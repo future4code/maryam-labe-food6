@@ -35,6 +35,17 @@
  
 ### Paleta de Cores
 - https://coolors.co/e8222e-fdfdfd-b8b8b8-000000
+### Fonts: 
+**Text Style**
+- Roboto, Regular, 16px 
+- Letter spacing: -0.4px
+
+**Text Style 2**
+- SFProText, Regular, 12px
+
+**Text Style 3**
+- Roboto, Regular, 16px
+- Center, Letter spacing: -0.4px
 
 # WireFrame
 
