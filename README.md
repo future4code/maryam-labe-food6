@@ -22,7 +22,7 @@
 # Planejamento
 
 - Há um board no Trello contendo todas as tarefas a serem feitas pelos integrantes do grupo.
-- Aplicações com múltiplas rotas utilizando React Router; Autenticação; Uso de bibliotecas de UI; Formulários com Validação; Hooks useState e useEffect.
+- Aplicações com múltiplas rotas utilizando React Router;  Autenticação;  Uso de bibliotecas de UI;  Formulários com Validação;  Hooks useState e useEffect.
 
 - API utilizada para realizar este projeto : https://documenter.getpostman.com/view/7549981/SWTEdGtT
  
