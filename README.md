@@ -1,4 +1,6 @@
 # Projeto 4Food 
+![Tela Inicial](https://user-images.githubusercontent.com/86701927/139736513-c05e5ab1-9a65-4c19-9692-cad07c1a6f0b.png)
+
 # Desenvolvedores
 
 - Geisylania Lopes
