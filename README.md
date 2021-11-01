@@ -1,5 +1,4 @@
 # Projeto 4Food 
-
 # Desenvolvedores
 
 - Geisylania Lopes
@@ -25,7 +24,7 @@
 
 - API utilizada para realizar este projeto : https://documenter.getpostman.com/view/7549981/SWTEdGtT
  
-**Páginas 4food:**
+#### Páginas 4food:
  - Área pessoal de Login e Cadastro.
  - Home com restaurantes e tipos de comidas.
  - Pedido e Confirmação com detalhes do pedido. 
@@ -38,7 +37,6 @@
 # WireFrame
 
 # Funcionalidades
-
 ## Fluxo de Login/Cadastro
 - O usuário deve ser capaz de criar uma conta, cadastrando seus dados pessoais e seu endereço.
 - Caso insira alguma informação incorreta ou deixe de inserir alguma informação obrigatória, o usuário deve receber uma mensagem de erro clara.
