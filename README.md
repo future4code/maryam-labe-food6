@@ -40,7 +40,7 @@ Projeto final do curso de Front-End da Labenu. A ideia foi desenvolver um aplica
 
 - [Paleta de Cores](https://coolors.co/e8222e-fdfdfd-b8b8b8-000000)
 
-- Fonts: 
+### Fonts: 
 **Text Style**
 - Roboto, Regular, 16px 
 - Letter spacing: -0.4px
