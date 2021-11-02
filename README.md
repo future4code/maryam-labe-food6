@@ -132,4 +132,4 @@ Agora é só testar em seu navegador!
 
 👋🏽 Entre em contato!
 
-Voltar ao Topo[^1]
+```Voltar ao Topo```
