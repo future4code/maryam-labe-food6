@@ -91,7 +91,7 @@ Projeto final do curso de Front-End da Labenu. A ideia foi desenvolver um aplica
 
 # 💾️ Como baixar/testar o projeto
 
--Antes de começar, você irá precisar instalar o Git(https://git-scm.com/), NodeJS(https://nodejs.org/pt-br/download/) + Visual Studio code(https://code.visualstudio.com/).
+- Antes de começar, você irá precisar instalar o Git(https://git-scm.com/), NodeJS(https://nodejs.org/pt-br/download/) + Visual Studio code(https://code.visualstudio.com/).
 
 ```# Versões mínimas ou superiores.
 $ node -v
@@ -130,3 +130,5 @@ Agora é só testar em seu navegador!
 [Geisylania Lopes](https://www.linkedin.com/in/geisy-lopes-05b3b5219) | [Leonardo Souza Gomes](https://www.linkedin.com/in/leonardo-gomes-353593182) | [Lucas Homero Pimentel](https://www.linkedin.com/in/lucas-homero-19b97581) | [Murilo Terenciani Carolino](https://www.linkedin.com/in/muriloterenciani) | [Sarah Romanhol Falconiere](https://www.linkedin.com/in/sarahromanhol)
 
 👋🏽 Entre em contato!
+
+```Voltar ao Topo```
