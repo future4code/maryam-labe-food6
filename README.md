@@ -47,8 +47,9 @@
 - Roboto, Regular, 16px
 - Center, Letter spacing: -0.4px
 
-# WireFrame
-![4Food](https://user-images.githubusercontent.com/86701927/139913544-4af965ad-64dc-423d-9450-04e68d97655b.png)
+# Wireframe
+![4food](https://user-images.githubusercontent.com/86701927/139914521-33fddf9a-ec20-42db-b76d-a0ad95059708.png)
+
 
 # Funcionalidades
 
