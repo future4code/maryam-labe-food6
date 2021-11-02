@@ -1,17 +1,15 @@
 # Projeto 4Food 
 ![Tela Inicial](https://user-images.githubusercontent.com/86701927/139736513-c05e5ab1-9a65-4c19-9692-cad07c1a6f0b.png)
 
-# 👩‍💻 Desenvolvedores
+# 📄 Sobre
 
-- Geisylania Lopes
-- Leonardo Souza Gomes
-- Lucas Homero S. R. Pimentel
-- Murilo Terenciani Carolino
-- Sarah Romanhol Falconiere
+Projeto final do curso de Front-End da Labenu. A ideia foi desenvolver um aplicativo parecido com o Ifood, onde o usuário faz os pedidos, acessa o carrinho de compras, finaliza a compra, altera seus dados e verifica o tempo de espera do pedido. 
 
 # 🔗 Link para acessar
 
 - link
+
+# 📲 Apresentação do aplicativo
 
 # 🛠 Tecnologias
 
@@ -38,6 +36,7 @@
  
 ### 🎨 Paleta de Cores
 - https://coolors.co/e8222e-fdfdfd-b8b8b8-000000
+
 ### Fonts: 
 **Text Style**
 - Roboto, Regular, 16px 
@@ -50,9 +49,8 @@
 - Roboto, Regular, 16px
 - Center, Letter spacing: -0.4px
 
-# 📲 Wireframe
+# 🧩 Wireframe
 ![4food](https://user-images.githubusercontent.com/86701927/139914521-33fddf9a-ec20-42db-b76d-a0ad95059708.png)
-
 
 # 💻 Funcionalidades
 
@@ -86,5 +84,41 @@
 - Ao editar as informações, caso insira alguma informação incorreta ou deixe de inserir alguma informação obrigatória, o usuário deve receber uma mensagem de erro clara.
 - O usuário deve ser capaz de visualizar o seu histórico de pedidos concluídos (após o tempo de entrega do estabelecimento, o seu pedido aparece nessa lista?).
 
-# 🖼 Imagens
+# 💾️ Como baixar/testar o projeto
+-Antes de começar, você irá precisar instalar o Git(https://git-scm.com/), NodeJS(https://nodejs.org/pt-br/download/) + Visual Studio code(https://code.visualstudio.com/).
 
+`# Versões mínimas ou superiores.
+$ node -v
+v12.19.0
+
+$ npm -v
+6.14.5
+`
+
+- Para configurar, no GitBash digite os seguinte códigos:
+
+`# Clonar o repositório
+$ git clone "https://github.com/future4code/maryam-labe-food6"
+
+#Entrar no diretório
+$ cd ./maryam-labe-food6
+
+#Abrir projeto no VsCode ou com seu prompt de comando de preferência
+code . ||  cd ./maryam-labe-food6 (Passo acima) 
+
+#Com o terminal aberto rodar o comando
+$ npm install (para instalar as dependências necessárias)
+
+#Agora só rodar o projeto com o comando
+$ npm run start
+
+#Pronto projeto abrirá em seu navegador padrão
+Agora é só testar em seu navegador!`
+
+# 👩‍💻 Desenvolvedores
+
+![Geisy](https://user-images.githubusercontent.com/86701927/139923314-24f11459-68da-4387-941b-a91640ec2467.jpg) | ![Leo](https://user-images.githubusercontent.com/86701927/139923382-99f769b7-0ef7-43e0-98df-bce6da35a4fc.jpg) | ![Lucas](https://user-images.githubusercontent.com/86701927/139923470-4b05d792-4b33-4bb1-b3bc-71950c7dbb47.JPG) | ![Murilo](https://user-images.githubusercontent.com/86701927/139923503-e4ea38cb-f999-42d6-9953-132a146fda0c.jpg) | ![Sarah](https://user-images.githubusercontent.com/86701927/139923533-9d3064bf-071e-4651-840f-4434d2b24a7b.jpg)
+:------: | :------: | :------: | :------: | :------:
+Geisylania Lopes(https://www.linkedin.com/in/geisy-lopes-05b3b5219) | Leonardo Souza Gomes(https://www.linkedin.com/in/leonardo-gomes-353593182) | Lucas Homero Pimentel(https://www.linkedin.com/in/lucas-homero-19b97581) | Murilo Terenciani Carolino(https://www.linkedin.com/in/muriloterenciani) | Sarah Romanhol Falconiere(https://www.linkedin.com/in/sarahromanhol)
+
+👋🏽 Entre em contato!
