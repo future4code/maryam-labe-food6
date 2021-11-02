@@ -16,12 +16,11 @@ Projeto final do curso de Front-End da Labenu. A ideia foi desenvolver um aplica
 
 # 🛠 Tecnologias
 
-- ReactJS
-- API
-- Material UI
-- Styled-components
-- Axios
-- Metodologias Ágeis
+- [ReactJS](https://pt-br.reactjs.org/)
+- [API](https://www.postman.com/home)
+- [Material UI](https://mui.com/pt/getting-started/installation/)
+- [Axios](https://axios-http.com/docs/intro)
+- [Metodologias Ágeis](https://trello.com/b/5FldI0TK/kanban-quadro-modelo)
 
 # 📋 Planejamento
 
@@ -41,7 +40,7 @@ Projeto final do curso de Front-End da Labenu. A ideia foi desenvolver um aplica
 
 - [Paleta de Cores](https://coolors.co/e8222e-fdfdfd-b8b8b8-000000)
 
-### Fonts: 
+- Fonts: 
 **Text Style**
 - Roboto, Regular, 16px 
 - Letter spacing: -0.4px
