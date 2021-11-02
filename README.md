@@ -28,7 +28,7 @@ Projeto final do curso de Front-End da Labenu. A ideia foi desenvolver um aplica
 - Foi utitilizado o Kanban como metodologia ágil.
 - Aplicações com múltiplas rotas utilizando React Router;  Autenticação;  Uso de bibliotecas de UI;  Formulários com Validação;  Hooks useState e useEffect.
 
-- API utilizada para realizar este projeto : https://documenter.getpostman.com/view/7549981/SWTEdGtT
+- API utilizada para realizar este projeto : [LabeFoods](https://documenter.getpostman.com/view/7549981/SWTEdGtT)
  
 ### Páginas 4food:
  - Área pessoal de Login e Cadastro.
@@ -37,8 +37,9 @@ Projeto final do curso de Front-End da Labenu. A ideia foi desenvolver um aplica
  - Perfil com dados do cliente.
  - Meu Carrinho com informações dos pedidos, quantidade de itens, formas de pagamentos e valores.
  
-### 🎨 Paleta de Cores
-- https://coolors.co/e8222e-fdfdfd-b8b8b8-000000
+### 🎨 Estilizações
+
+- [Paleta de Cores](https://coolors.co/e8222e-fdfdfd-b8b8b8-000000)
 
 ### Fonts: 
 **Text Style**
@@ -91,7 +92,7 @@ Projeto final do curso de Front-End da Labenu. A ideia foi desenvolver um aplica
 
 # 💾️ Como baixar/testar o projeto
 
-- Antes de começar, você irá precisar instalar o Git(https://git-scm.com/), NodeJS(https://nodejs.org/pt-br/download/) + Visual Studio code(https://code.visualstudio.com/).
+- Antes de começar, você irá precisar instalar o [Git](https://git-scm.com/), [NodeJS](https://nodejs.org/pt-br/download/) + [Visual Studio Code](https://code.visualstudio.com/).
 
 ```# Versões mínimas ou superiores.
 $ node -v
@@ -131,4 +132,4 @@ Agora é só testar em seu navegador!
 
 👋🏽 Entre em contato!
 
-```Voltar ao Topo```
+Voltar ao Topo[^1]
