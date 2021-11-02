@@ -1,7 +1,7 @@
 # Projeto 4Food 
 ![Tela Inicial](https://user-images.githubusercontent.com/86701927/139736513-c05e5ab1-9a65-4c19-9692-cad07c1a6f0b.png)
 
-# Desenvolvedores
+# 👩‍💻 Desenvolvedores
 
 - Geisylania Lopes
 - Leonardo Souza Gomes
@@ -9,17 +9,20 @@
 - Murilo Terenciani Carolino
 - Sarah Romanhol Falconiere
 
-# Link para acessar
+# 🔗 Link para acessar
 
 - link
 
-# Tecnologias utilizadas
+# 🛠 Tecnologias
 
 - ReactJS
+- API
 - Material UI
+- Styled-components
 - Axios
+- Metodologias Ágeis
 
-# Planejamento
+# 📋 Planejamento
 
 - Foi utitilizado o Kanban como metodologia ágil.
 - Aplicações com múltiplas rotas utilizando React Router;  Autenticação;  Uso de bibliotecas de UI;  Formulários com Validação;  Hooks useState e useEffect.
@@ -33,7 +36,7 @@
  - Perfil com dados do cliente.
  - Meu Carrinho com informações dos pedidos, quantidade de itens, formas de pagamentos e valores.
  
-### Paleta de Cores
+### 🎨 Paleta de Cores
 - https://coolors.co/e8222e-fdfdfd-b8b8b8-000000
 ### Fonts: 
 **Text Style**
@@ -47,11 +50,11 @@
 - Roboto, Regular, 16px
 - Center, Letter spacing: -0.4px
 
-# Wireframe
+# 📲 Wireframe
 ![4food](https://user-images.githubusercontent.com/86701927/139914521-33fddf9a-ec20-42db-b76d-a0ad95059708.png)
 
 
-# Funcionalidades
+# 💻 Funcionalidades
 
 ### Fluxo de Login/Cadastro:
 - O usuário deve ser capaz de criar uma conta, cadastrando seus dados pessoais e seu endereço.
@@ -83,5 +86,5 @@
 - Ao editar as informações, caso insira alguma informação incorreta ou deixe de inserir alguma informação obrigatória, o usuário deve receber uma mensagem de erro clara.
 - O usuário deve ser capaz de visualizar o seu histórico de pedidos concluídos (após o tempo de entrega do estabelecimento, o seu pedido aparece nessa lista?).
 
-# Imagens
+# 🖼 Imagens
 
