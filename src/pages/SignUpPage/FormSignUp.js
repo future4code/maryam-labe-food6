@@ -79,7 +79,7 @@ const handleSignUp = (ev) => {
           placeholder={"Confirmar Senha"}
           required
         />
-        <button type="submit">Cadastrar</button>
+        <button type="submit">Criar</button>
       </ContainerSignUp>
   );
 };
