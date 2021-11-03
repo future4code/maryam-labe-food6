@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ContainerSignUp = styled.div`
+export const ContainerSignUp = styled.form`
     display: flex;
     flex-direction: column;
     margin: 0 auto;
@@ -9,6 +9,7 @@ export const ContainerSignUp = styled.div`
 
     input {
         padding: 2vh;
+        border-radius: 10px;
     }
 `
 
