@@ -1,19 +1,19 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { headers } from "../constants/urls"
 
-const useRequestData = (initialData, url) => {
+const useRequestData = (initialData, url, parametro) => {
     const [data, setData] = useState(initialData)
 
     useEffect(() => {
-        const headers = {
-            headers: {
-                Authorization: localStorage.getItem("token")
-            }
-        }
         axios
         .get(url, headers)
         .then((res) => {
-            setData(res.data)
+            if (parametro) {
+                setData(res.data[parametro])
+            } else {
+                setData(res.data)
+            }
         })
         .catch((err) => {
             console.log(err.response)
