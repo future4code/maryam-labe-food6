@@ -4,7 +4,7 @@ export const ContainerAddress = styled.form`
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    width: 70%;
+    width: 70vw;
     gap: 2vh;
 
     select{
@@ -15,4 +15,10 @@ export const ContainerAddress = styled.form`
         padding: 2vh;
         border-radius: 10px;
     }
+`
+
+export const ScreenAddress = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `

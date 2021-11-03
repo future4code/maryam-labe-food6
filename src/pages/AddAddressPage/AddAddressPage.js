@@ -1,15 +1,16 @@
 import React from "react";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import AddressForm from "./AddressForm";
+import { ScreenAddress } from "./styled";
 
 const AddAddressPage = () => {
   useProtectedPage();
 
   return (
-    <div>
-      <h1>AddAddressPage</h1>
+    <ScreenAddress>
+      <h4>Meu endereço</h4>
       <AddressForm />
-    </div>
+    </ScreenAddress>
   );
 };
 
