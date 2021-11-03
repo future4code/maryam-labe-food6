@@ -1,5 +1,4 @@
 import React from "react";
-import useProtectedPage from "../../hooks/useProtectedPage";
 import { useHistory } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import { address } from "../../services/user";
@@ -90,7 +89,6 @@ const AddressForm = () => {
           <option value="SP">São Paulo</option>
           <option value="SE">Sergipe</option>
           <option value="TO">Tocantins</option>
-          <option value="EX">Estrangeiro</option>
         </select>
         <input
           name={"complement"}
