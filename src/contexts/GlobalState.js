@@ -11,6 +11,8 @@ const GlobalState = (props) => {
     
     // Pode-se adicionar request também se necessário.
     
+    
+
     return (
         <GlobalContext.Provider value={{states, setters}}>
             {props.children}

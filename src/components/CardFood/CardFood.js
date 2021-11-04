@@ -16,7 +16,9 @@ import {ContainerCarrinho,
         const CardFood = (props) => {
     return(
         <ContainerCarrinho>
-            <NavBar />
+            <NavBar>
+                <h3>Meu Carrinho</h3>
+            </NavBar>
 
             <EnderecoUsuario>
                 <p>Endereço de entrega</p>
@@ -42,7 +44,6 @@ import {ContainerCarrinho,
                     <button>{props.quantity}</button>
                 </Quantidade>
                 
-
                 <BotaoRemover>
                     <button onClick={() => props.removeItem(props.id)}>-</button>
                     <button onClick={() => props.addItem(props.id)}>+</button>

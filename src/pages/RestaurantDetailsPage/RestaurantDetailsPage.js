@@ -8,6 +8,7 @@ import back from '../../assets/imgs/back.png'
 import { headers } from "../../constants/urls"
 import axios from "axios"
 
+
 const RestaurantDetailsPage = () => {
     useProtectedPage()
     const params = useParams()
