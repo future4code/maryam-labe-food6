@@ -26,4 +26,7 @@ export const goToEditAddress = (history) => {
     history.push("/perfil/endereco")
 }
 
+export const goBack = (history) => {
+    history.goBack()
+}
 
