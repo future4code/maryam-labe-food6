@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
+import GlobalState from "../../contexts/GlobalState";
 import useRequestData from "../../hooks/useRequestData"
 import { URL_Base } from "../../constants/urls"
 import { useParams } from "react-router-dom"
@@ -16,6 +17,30 @@ const RestaurantDetailsPage = () => {
     console.log(restaurante)
     console.log(restaurante.products)
     
+    const {states, setters} = useContext(GlobalState)
+
+    
+
+    // Para adiconar dps os produtos 
+    
+    // const addToCart = (id) => {
+    //     const newCart = {...states.cart, products: listProducts}
+    //     setters.setCart(newCart)
+
+    //     const listProducts = states.cart.products.map(product => {
+    //         if (product.id === id) {
+    //             const newQuantity = product.quantity + 1
+    //             const infosProduct = {
+    //                 ...product, quantity: newQuantity
+    //             }
+    //             return infosProduct
+            
+    //         } else {
+    //             return product
+    //         }
+    //     })
+    // }
+
 
     return (
         <RestaurantDetailsPageContainer>
