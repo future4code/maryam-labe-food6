@@ -1,41 +1,46 @@
 import React, {useState, useEffect, useContext} from "react";
-import GlobalState from "../../contexts/GlobalState"
-import CardFood from "../../components/CardFood";
+import CardFood from "../../components/CardFood/CardFood";
+import GlobalState from "../../contexts/GlobalState";
 import {} from "../../services/user";
+import useRequestData from "../../hooks/useRequestData"
 
 
 const CartPage = () => {
     const {states, setters} = useContext(GlobalState)
-    // const [userAddress, setUserAddress] = useState(undefined)
-
-    // useEffect(() => {
-    //     Address(setUserAddress)
-    // }, [])
     
-    
-    const addToCart = (id) => {
-        const newCart = {...states.cart, products: listProducts}
-        setters.setCart(newCart)
+    const [userAddress, setUserAddress] = useState(undefined)
+    const orderProd = useRequestData({}, `${URL_Base}/restaurants/1`, 'restaurant')
 
-        const listProducts = states.cart.products.map(product => {
-            if (product.id === id) {
-                const newQuantity = product.quantity + 1
-                const infosProduct = {
-                    ...product, quantity: newQuantity
-                }
-                return infosProduct
+
+    useEffect(() => {
+        Address(setUserAddress)
+    }, [])
+
+
+    
+    // const addToCart = (id) => {
+    //     const newCart = [...orderProd]
+    //     setCart(newCart)
+
+    //     const orderProd = products.map(product => {
+    //         if (product.id === id) {
+    //             const newQuantity = product.quantity + 1
+    //             const infosProduct = {
+    //                 ...product, quantity: newQuantity
+    //             }
+    //             return infosProduct
             
-            } else {
-                return product
-            }
-        })
-    }
+    //         } else {
+    //             return product
+    //         }
+    //     })
+    // }
 
     const removeToCart = (id) => {
-        const newCart = {...states.cart, products: listProducts}
-        setters.setCart(newCart)
+        const newCart = [...orderProd]
+        setCart(newCart)
 
-        const listProducts = states.cart.products.map(product => {
+        const orderProd = products.map(product => {
             if (product.id === id) {
                 const newQuantity = product.quantity - 1
                 const infosProduct = {
@@ -58,33 +63,32 @@ const CartPage = () => {
               subtotalPrice += product.price * product.quantity
             }
         )
-            return states.cart.products.shipping + subtotalPrice
+            return states.products.shipping + subtotalPrice
         }
         return 0
     }
 
-    
-    const FoodCard = states.cart.products.map((product) => {
-        if (product.quantity > 0) {
-        return(
-            <CardFood key={product.id}
-            id={product.id}
-            quantity={product.quantity}
-            photoUrl={product.photoUrl}
-            name={product.name}
-            description={product.description}
-            price={product.price}
-            addToCart={addToCart}
-            removeToCart={removeToCart}
-            />
-        )
-        }
-    })
+
+    // const FoodCard = states.cart.products.map((product) => {
+    //     if (product.quantity > 0) {
+    //     return(
+    //         <CardFood key={product.id}
+    //         id={product.id}
+    //         quantity={product.quantity}
+    //         photoUrl={product.photoUrl}
+    //         name={product.name}
+    //         description={product.description}
+    //         price={product.price}
+    //         addToCart={() => addToCart(product.id)}
+    //         removeToCart={() => removeToCart(product.id)}
+    //         />
+    //     )
+    //     }
+    // })
     
     return (
         <div>
-            {FoodCard}
-            <h2>{subtotalCart}</h2>
+            <CardFood />
         </div>
     )
 }
