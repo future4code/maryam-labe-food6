@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const ContainerCarrinho = styled.div`
     width: 22.5rem;
     height: 40rem;
+    margin: 0 auto;
 `
 // Barra de Navegação 
 
@@ -15,24 +16,29 @@ export const NavBar = styled.div`
     box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
     background-color: #fff;
 
-    h4{
+    h3{
         width: 22.5rem;
         height: 4rem;
         margin: 0 0 0.063rem;
         -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
         color: black;
+        
+        align-items: center;
+        justify-content: center;
+        display: flex;
     }
 `
 
 // Container Usuário
 
 export const EnderecoUsuario = styled.div`
-    width: 22.5rem;
-    height: 4.75rem;
+    width: 20.5rem;
+    height: 3rem;
     margin: 0.063rem 0 0.5rem;
     padding: 1rem;
     background-color: #eee;
+    margin: 0 auto;
 
     p:nth-child(1){
         width: 20.5rem;
@@ -60,14 +66,14 @@ export const EnderecoUsuario = styled.div`
 export const EnderecoRestaurante = styled.div`
     width: 22.5rem;
     height: 4.75rem;
-    margin: 0.063rem 0 1rem;
+    margin: 0.063rem 0 0.5rem;
     padding: 1rem;
-    background-color: #eee;
+    background-color: white;
 
     p:nth-child(1){
         width: 20.5rem;
         height: 1.125rem;
-        margin: 1rem 1rem 0.5rem;
+        margin: 0 0 0.5rem;
         font-family: Roboto;
         font-size: 1rem;
         letter-spacing: -0.39px;
@@ -77,7 +83,7 @@ export const EnderecoRestaurante = styled.div`
     p:nth-child(2){
         width: 20.5rem;
         height: 1.125rem;
-        margin: 0.5rem 1rem;
+        margin: 0.5rem 0 0;
         font-family: Roboto;
         font-size: 1rem;
         letter-spacing: -0.39px;
@@ -87,7 +93,7 @@ export const EnderecoRestaurante = styled.div`
     p:nth-child(3){
         width: 20.5rem;
         height: 1.125rem;
-        margin: 0.5rem 1rem;
+        margin: 0.5rem 0 0;
         font-family: Roboto;
         font-size: 1rem;
         letter-spacing: -0.39px;
@@ -103,6 +109,7 @@ export const CardComidas = styled.div`
     height: 7rem;
     border-radius: 8px;
     border: solid 1px #b8b8b8;
+    margin: 0 auto;
 `
 
 export const CardInfos = styled.div`
@@ -255,13 +262,16 @@ export const BotaoConfirmar = styled.button`
     padding: 0.75rem 1rem;
     border-radius: 2px;
     background-color: #e8222e;
+    cursor: pointer;
 
     p{
         width: 18.5rem;
         height: 1.125rem;
+        font-size: medium;
+        font-weight: 600;
         font-family: Roboto;
         letter-spacing: -0.39px;
-        text-align: center;
+        margin: 0 auto;
         color: black;
     }
 `

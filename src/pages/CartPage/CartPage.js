@@ -1,7 +1,8 @@
 import React, {useState, useEffect, useContext} from "react";
-import GlobalState from "../../contexts/GlobalState"
-import CardFood from "../../components/CardFood";
+import CardFood from "../../components/CardFood/CardFood";
+import GlobalState from "../../contexts/GlobalState";
 import {} from "../../services/user";
+import useRequestData from "../../hooks/useRequestData"
 
 
 const CartPage = () => {
