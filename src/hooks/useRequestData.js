@@ -11,8 +11,10 @@ const useRequestData = (initialData, url, parametro) => {
         .then((res) => {
             if (parametro) {
                 setData(res.data[parametro])
+                console.log(res)
             } else {
                 setData(res.data)
+                console.log(res)
             }
         })
         .catch((err) => {

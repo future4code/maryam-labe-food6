@@ -6,8 +6,9 @@ import { URL_Base } from "../../constants/urls"
 
 const ProfilePage = () => {
 
-    const profile = useRequestData({}, `${URL_Base}/profile`)
+    const profile = useRequestData({}, `${URL_Base}/profile`, 'user')
 
+    console.log(profile)
     return (
         <div>
             <HeaderContainer>
@@ -15,16 +16,16 @@ const ProfilePage = () => {
             </HeaderContainer>
             <InfoProfileContainer>
                 <div>
-                    <p>Nome</p>
-                    <p>Email</p>
-                    <p>CPF</p>
+                    <p>{profile.name}</p>
+                    <p>{profile.email}</p>
+                    <p>{profile.cpf}</p>
                 </div>
                 <IconCreateOutlined />
             </InfoProfileContainer>
             <AddressContainer>
                 <div>
                     <p>Endereço cadastrado</p>
-                    <p>Rua tal, 45 - vila</p>
+                    <p>{profile.address}</p>
                 </div>
                 <IconCreateOutlined />
             </AddressContainer>
