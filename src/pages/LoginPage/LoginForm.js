@@ -1,8 +1,9 @@
 import React from "react";
 import useForm from "../../hooks/useForm";
 import {useHistory} from "react-router-dom";
-import {ContainerInputs} from "./styled";
+import {ContainerInputs, Form} from "./styled";
 import {login} from "../../services/user"
+import { TextField, Button } from "@material-ui/core";
 
 const LoginForm = () => {
     const [form, onChange, clear] = useForm({email: "", password: ""})
@@ -15,29 +16,31 @@ const LoginForm = () => {
 
     return(
         <ContainerInputs>
-            <form onSubmit={onSubmitForm}>
-                <input
+            <Form onSubmit={onSubmitForm}>
+                <TextField
                     name={"email"}
                     value={form.email}
                     onChange={onChange}
-                    placeholder={"E-mail"}
+                    variant="outlined"
+                    label="E-mail"
                     type={"email"}
                     title={"Digite seu e-mail"}
                     required
                 />
                 
-                <input
+                <TextField
                     name={"password"}
                     value={form.password}
                     onChange={onChange}
-                    placeholder={"Senha"}
+                    variant="outlined"
+                    label="Senha"
                     type={"password"}
                     title={"Digite sua senha"}
                     required
                 />
 
-                <button type={"submit"}>Entrar</button>
-            </form>
+                <Button type={"submit"}>Entrar</Button>
+            </Form>
         </ContainerInputs>
     )
 
