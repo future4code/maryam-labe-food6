@@ -34,6 +34,7 @@ export const InfoProfileContainer = styled.div `
 export const IconCreateOutlined = styled(CreateOutlined) `
     margin-top: 12px;
     object-fit: contain;
+    cursor: pointer;
 `
 
 export const AddressContainer = styled.div `

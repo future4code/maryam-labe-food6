@@ -3,10 +3,13 @@ import { HeaderContainer, InfoProfileContainer, AddressContainer, IconCreateOutl
 import { CreateOutlined } from "@material-ui/icons"
 import useRequestData from "../../hooks/useRequestData"
 import { URL_Base } from "../../constants/urls"
+import { goToEditUser } from "../../routes/coordinator"
+import { useHistory } from "react-router-dom"
 
 const ProfilePage = () => {
 
     const profile = useRequestData({}, `${URL_Base}/profile`, 'user')
+    const history = useHistory()
 
     console.log(profile)
     return (
@@ -20,7 +23,7 @@ const ProfilePage = () => {
                     <p>{profile.email}</p>
                     <p>{profile.cpf}</p>
                 </div>
-                <IconCreateOutlined />
+                <IconCreateOutlined onClick={() => goToEditUser(history)}/>
             </InfoProfileContainer>
             <AddressContainer>
                 <div>
