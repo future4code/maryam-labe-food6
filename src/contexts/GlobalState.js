@@ -8,9 +8,9 @@ const GlobalState = (props) => {
 
     const states = {cart, profile}
     const setters = {setCart, setProfile}
-
+    
     // Pode-se adicionar request também se necessário.
-
+    
     return (
         <GlobalContext.Provider value={{states, setters}}>
             {props.children}
@@ -18,4 +18,4 @@ const GlobalState = (props) => {
     )
 }
 
-export default GlobalState
+export default GlobalState;
