@@ -1,3 +1,4 @@
+import { TextField, Button } from "@material-ui/core";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import useForm from "../../hooks/useForm";
@@ -39,47 +40,52 @@ const handleSignUp = (ev) => {
 
   return (
       <ContainerSignUp onSubmit={handleSignUp}>
-        <input
+        <TextField
           name={"name"}
           value={form.name}
+          variant="outlined"
           onChange={onChange}
-          placeholder={"Nome"}
+          label="Nome"
           required
         />
-        <input
+        <TextField
           name={"email"}
           type="email"
+          variant="outlined"
           value={form.email}
           onChange={onChange}
-          placeholder={"E-mail"}
+          label="E-mail"
           required
           />
-        <input
+        <TextField
           name={"cpf"}
           value={form.cpf}
+          variant="outlined"
           onChange={onChange}
-          placeholder={"CPF"}
+          label="CPF"
           pattern="([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})"
           title="CPF inválido - Use apenas números"
           required
           />
-        <input
+        <TextField
           name={"password"}
           type="password"
+          variant="outlined"
           id="password"
           value={form.password}
           onChange={onChange}
-          placeholder={"Senha"}
+          label="Senha"
           required
         />
-        <input
+        <TextField
           name={"password"}
           type="password"
+          variant="outlined"
           id="confirm_password"
-          placeholder={"Confirmar Senha"}
+          label="Confirmar Senha"
           required
         />
-        <button type="submit">Criar</button>
+        <Button type="submit">Criar</Button>
       </ContainerSignUp>
   );
 };

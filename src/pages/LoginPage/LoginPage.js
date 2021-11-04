@@ -4,6 +4,7 @@ import { goToSignUp } from "../../routes/coordinator";
 import LoginForm from "./LoginForm";
 import useUnprotectedPage from "../../hooks/useUnprotectedPage";
 import {ScreenContainer, SignUpContainer} from "./styled"
+import logo from '../../assets/imgs/logo-ifuture.svg'
 
 
 const LoginPage = () => {
@@ -12,12 +13,13 @@ const LoginPage = () => {
     
     return (
         <ScreenContainer>
-            <img src="" alt="Logo IFuture" />
+            <img src={logo} alt="Logo IFuture" />
+            <p><b>Entrar</b></p>
             <LoginForm />
             <SignUpContainer>
-                <button onClick={() => goToSignUp(history)} type={"submit"}>
-                    Não possui cadastro? Clique aqui.
-                </button>
+                <a onClick={() => goToSignUp(history)} type={"submit"}>
+                    <b>Não possui cadastro? Clique aqui.</b>
+                </a>
             </SignUpContainer>
         </ScreenContainer>
     )
