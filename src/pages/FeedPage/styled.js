@@ -1,37 +1,40 @@
 import styled from "styled-components";
 
 export const CardRestaurant = styled.div`
-    background-color: #B8B8B8;
-    width: 550px;
+    background-color: #ffffff;
+    width: 300px;
     height: 500px;
-    box-shadow: #E8222E;
-	border: 10px  solid #E8222E ;
+    box-shadow: #B8B8B8;
+	border: 4px  solid #B8B8B8 ;
     border-radius: 10px;
-    left: 50px;
+    left: 100px;
     display: flex;
     justify-content: space-around;
     display: flex;
     flex-direction: column;
-    margin: 0px ;
+    margin: 450px;
     margin-top: 100px;
     margin-bottom: 10px;
     text-align: flex;
     align-items: center;
-    padding: 100px 150px 50px;
-    margin-inline-end: 20px;
+    padding: 10px 150px 100px;
+    margin-inline-end: 10px;
     
 `;
 export const Td = styled.div`
-    display: inline-flex;
+    display: flex;
     background-color: #E8222E;
-    width: 10;
+    width: 50;
     height: 10;
-    padding: 10px 150px 0px;
-    border: 4px solid white;
-    margin-inline-end: 20px;
-    left: 10px;
-    height: 150px;
+    padding: 10px 50px 0px;
+    border: 1px solid #B8B8B8;
+    margin: 10px;
+    left: 80px;
+    height: 50px;
+    justify-content: width;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-right: 10px;
 `
 export const Img = styled.img`
-  width: 90%;
+    width: 250px;
 `;
