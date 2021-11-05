@@ -1,9 +1,16 @@
 import React from "react"
+import FormEditUser from "./FormEditUser"
+import { HeaderContainer } from "./styled"
 
 const EditUserPage = () => {
+
+    
     return (
         <div>
-            <h1>EditUserPage</h1>
+            <HeaderContainer>
+                <p>Editar</p>
+            </HeaderContainer>
+            <FormEditUser />
         </div>
     )
 }

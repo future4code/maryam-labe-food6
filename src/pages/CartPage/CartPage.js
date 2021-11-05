@@ -19,7 +19,6 @@ const CartPage = () => {
     const {requests} = useContext(GlobalContext)
     const {restaurante} = requests
     const newProducts = restaurante.products
-
     const [userAddress, setUserAddress] = useState(undefined)
 
     useEffect(() => {
@@ -37,12 +36,6 @@ const CartPage = () => {
                     ...product, quantity: newQuantity
                 }
                 return infosProduct
-            
-            } else {
-                return product
-            }
-        })
-    }
 
 
     const subtotalCart = () => {
@@ -58,6 +51,7 @@ const CartPage = () => {
         }
         return 0
     }
+
 
     const ContainerFoodCard = newProducts && newProducts.map((product) => {
         return(

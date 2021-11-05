@@ -1,14 +1,18 @@
-import React from "react"
+import React, {useContext} from "react"
 import { HeaderContainer, InfoProfileContainer, AddressContainer, IconCreateOutlined, HistoryContainer, OrderHistorys } from "./styled"
-import { CreateOutlined } from "@material-ui/icons"
-import useRequestData from "../../hooks/useRequestData"
-import { URL_Base } from "../../constants/urls"
+import { goToEditUser } from "../../routes/coordinator"
+import { useHistory } from "react-router-dom"
+import { GlobalContext } from "../../contexts/GlobalContext"
 
 const ProfilePage = () => {
+    const {states, setters, requests} = useContext(GlobalContext)
+    const history = useHistory()
+    const {profile} = requests
 
-    const profile = useRequestData({}, `${URL_Base}/profile`, 'user')
+    const {setCart, setEditProfile} = setters
+    setEditProfile(profile)
 
-    console.log(profile)
+
     return (
         <div>
             <HeaderContainer>
@@ -20,7 +24,7 @@ const ProfilePage = () => {
                     <p>{profile.email}</p>
                     <p>{profile.cpf}</p>
                 </div>
-                <IconCreateOutlined />
+                <IconCreateOutlined onClick={() => goToEditUser(history)}/>
             </InfoProfileContainer>
             <AddressContainer>
                 <div>
