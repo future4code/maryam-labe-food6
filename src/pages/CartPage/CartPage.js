@@ -1,72 +1,124 @@
 import React, {useState, useEffect, useContext} from "react";
-import CardFood from "../../components/CardFood/CardFood";
-import GlobalContext from "../../contexts/GlobalContext";
-import {} from "../../services/user";
+import { GlobalContext } from "../../contexts/GlobalContext";
+import { getAddress, setUserAdress } from "../../services/user";
+import {ContainerCarrinho,
+        NavBar,
+        EnderecoUsuario,
+        EnderecoRestaurante,
+        CardComidas,
+        CardInfos,
+        Quantidade,
+        BotaoRemover,
+        Frete,
+        Subtotal,
+        ContainerPagamento,
+        BotaoConfirmar} from "./styled";
 
 
 const CartPage = () => {
-    
-    // const [userAddress, setUserAddress] = useState(undefined)
+    const {requests} = useContext(GlobalContext)
+    const {restaurante} = requests
+    const newProducts = restaurante.products
 
-    // useEffect(() => {
-    //     Address(setUserAddress)
-    // }, [])
-    
+    const [userAddress, setUserAddress] = useState(undefined)
 
+    useEffect(() => {
+        getAddress()
+    }, [])
 
-    // const removeToCart = (id) => {
-    //     const newCart = {...states.cart, products: listProducts}
-    //     setters.setCart(newCart)
+    const removeToCart = (id) => {
+        const newCart = {...newProducts, products: listProducts}
+        newProducts.setCart(newCart)
 
-    //     const listProducts = states.cart.products.map(product => {
-    //         if (product.id === id) {
-    //             const newQuantity = product.quantity - 1
-    //             const infosProduct = {
-    //                 ...product, quantity: newQuantity
-    //             }
-    //             return infosProduct
+        const listProducts = newProducts.map(product => {
+            if (product.id === id) {
+                const newQuantity = product.quantity - 1
+                const infosProduct = {
+                    ...product, quantity: newQuantity
+                }
+                return infosProduct
             
-    //         } else {
-    //             return product
-    //         }
-    //     })
-    // }
-
-    // const subtotalCart = () => {
-    //     let subtotalPrice= 0
-
-    //     if ((states.cart).length !== 0) {
-    //         states.cart.products.forEach(
-    //         (product) => {
-    //           subtotalPrice += product.price * product.quantity
-    //         }
-    //     )
-    //         return states.cart.products.shipping + subtotalPrice
-    //     }
-    //     return 0
-    // }
+            } else {
+                return product
+            }
+        })
+    }
 
 
-    // const cartList =
-    // cart.length === 0
-    //   ? "Carrinho vazio"
-    //   : cart.map((product) => {
-    //       return (
-    //         <CardFood
-    //           key={item.id}
-    //           name={item.name}
-    //           price={Number(item.price)}
-    //           image={item.photos[0]}
-    //           amount={item.amount}
-    //           removeItem={() => removeItem(item)}
-    //         />
-    //       );
-    //     });
+    const subtotalCart = () => {
+        let subtotalPrice = 0
+
+        if ((newProducts).length !== 0) {
+            newProducts.forEach(
+            (product) => {
+              subtotalPrice += product.price * product.quantity
+            }
+        )
+            return newProducts.shipping + subtotalPrice
+        }
+        return 0
+    }
+
+    const ContainerFoodCard = newProducts && newProducts.map((product) => {
+        return(
+            <CardComidas key={product.id}>
+                <img src={product.photoUrl} alt="fot de lanche"/>
+                
+                <div>
+                    <CardInfos>
+                        <h3>{product.name}</h3>
+                        <p>{product.description}</p>
+                        <p>R$ {product.price}</p>
+                    </CardInfos>
+
+                    {/* <Quantidade>
+                        <button>{product.quantity}</button>
+                    </Quantidade>
+                    
+                    <BotaoRemover>
+                        <button onClick={() => removeItem(restaurante.products.id)}>-</button>
+                    </BotaoRemover> */}
+                </div>
+            
+            </CardComidas>
+        )
+    })
     
     return (
-        <div>
-            <CardFood />
-        </div>
+        <ContainerCarrinho>
+            <NavBar>
+                <h3>Meu Carrinho</h3>
+            </NavBar>
+
+            <EnderecoUsuario>
+                <p>Endereço de entrega</p>
+                <p>{userAddress}</p>
+            </EnderecoUsuario>
+
+            <EnderecoRestaurante>
+                <p>{restaurante.name}</p>
+                <p>{restaurante.address}</p>
+                <p>{restaurante.deliveryTime} min</p>
+            </EnderecoRestaurante>
+
+            {ContainerFoodCard}
+
+            <Frete>Frete R$ 10,00</Frete>
+
+            <Subtotal>
+                <p>SUBTOTAL</p>
+                <p>{subtotalCart}</p>
+            </Subtotal>
+
+            <ContainerPagamento>
+                <p>Forma de Pagamento</p>
+            </ContainerPagamento>
+
+            <BotaoConfirmar>
+                <p>Confirmar</p>
+            </BotaoConfirmar>
+        
+        </ContainerCarrinho>
     )
 }
 
