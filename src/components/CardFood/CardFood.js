@@ -21,7 +21,7 @@ const CardFood = () => {
     const newProducts = restaurante.products
     console.log(newProducts)
 
-    const FoodCard = newProducts && newProducts.map((product) => {
+    const ContainerFoodCard = newProducts && newProducts.map((product) => {
         return(
             <CardComidas key={product.id}>
                 <img src={product.photoUrl} alt="fot de lanche"/>
@@ -64,25 +64,9 @@ const CardFood = () => {
                 <p>{restaurante.deliveryTime}</p>
             </EnderecoRestaurante>
 
-            {FoodCard}
-            
-            {/* <CardComidas>
-                <img src={restaurante.products.photoUrl} alt="fot de lanche"/>
-                
-                <CardInfos>
-                    <p>{restaurante.products.name}</p>
-                    <p>{restaurante.products.decription}</p>
-                    <p>{restaurante.products.price}</p>
-                </CardInfos>
 
-                <Quantidade>
-                    <button>{restaurante.products.quantity}</button>
-                </Quantidade>
-                
-                <BotaoRemover>
-                    <button onClick={() => removeItem(restaurante.products.id)}>-</button>
-                </BotaoRemover>
-            </CardComidas> */}
+            {ContainerFoodCard}
+            
 
             <Frete/>
 
