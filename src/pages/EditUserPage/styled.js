@@ -15,3 +15,18 @@ export const HeaderContainer = styled.div `
         letter-spacing: -0.39px;
     }
 `
+
+export const ContainerEditUser = styled.form`
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 90%;
+    gap: 2vh;
+
+    Button {
+        background-color: #e8222e;
+        color: black;
+        height: 42px;
+        border-radius: 2px;
+    }
+`
