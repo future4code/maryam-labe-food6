@@ -11,7 +11,7 @@ const useRequestData = (initialData, url, parametro) => {
         .then((res) => {
             if (parametro) {
                 setData(res.data[parametro])
-                console.log(res)
+                // console.log(res)
             } else {
                 setData(res.data)
                 console.log(res)
@@ -20,7 +20,7 @@ const useRequestData = (initialData, url, parametro) => {
         .catch((err) => {
             console.log(err.response)
         })
-    }, [url])
+    }, [url, data])
 
     return data
 }
