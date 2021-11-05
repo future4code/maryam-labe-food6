@@ -105,21 +105,23 @@ export const EnderecoRestaurante = styled.div`
 // Card dos lanchos 
 
 export const CardComidas = styled.div`
+    display: flex;
     width: 20.5rem;
     height: 7rem;
     border-radius: 8px;
     border: solid 1px #b8b8b8;
     margin: 0 auto;
-`
 
-export const CardInfos = styled.div`
     img {
         width: 6rem;
         height: 7rem;
         margin: 0 1rem 0 0;
         object-fit: contain;
     }
+`
 
+export const CardInfos = styled.div`
+    
     p:nth-child(1){
         width: 10.438rem;
         height: 1.125rem;

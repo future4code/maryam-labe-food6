@@ -1,12 +1,11 @@
 import React, {useState, useEffect, useContext} from "react";
 import CardFood from "../../components/CardFood/CardFood";
-import GlobalState from "../../contexts/GlobalState";
+import GlobalContext from "../../contexts/GlobalContext";
 import {} from "../../services/user";
-import useRequestData from "../../hooks/useRequestData"
 
 
 const CartPage = () => {
-    // const {states, setters} = useContext(GlobalState)
+    
     // const [userAddress, setUserAddress] = useState(undefined)
 
     // useEffect(() => {
@@ -47,28 +46,26 @@ const CartPage = () => {
     //     return 0
     // }
 
-    
-    // const FoodCard = states.cart.products.map((product) => {
-    //     if (product.quantity > 0) {
-    //     return(
-    //         <CardFood key={product.id}
-    //         id={product.id}
-    //         quantity={product.quantity}
-    //         photoUrl={product.photoUrl}
-    //         name={product.name}
-    //         description={product.description}
-    //         price={product.price}
-    //         addToCart={addToCart}
-    //         removeToCart={removeToCart}
+
+    // const cartList =
+    // cart.length === 0
+    //   ? "Carrinho vazio"
+    //   : cart.map((product) => {
+    //       return (
+    //         <CardFood
+    //           key={item.id}
+    //           name={item.name}
+    //           price={Number(item.price)}
+    //           image={item.photos[0]}
+    //           amount={item.amount}
+    //           removeItem={() => removeItem(item)}
     //         />
-    //     )
-    //     }
-    // })
+    //       );
+    //     });
     
     return (
         <div>
             <CardFood />
-            <h2>subtotalCart</h2>
         </div>
     )
 }

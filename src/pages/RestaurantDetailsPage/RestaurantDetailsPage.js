@@ -17,30 +17,6 @@ const RestaurantDetailsPage = () => {
     const restaurante = useRequestData({}, `${URL_Base}/restaurants/1`, 'restaurant')
     console.log(restaurante)
     console.log(restaurante.products)
-    
-    const {states, setters} = useContext(GlobalState)
-
-    
-
-    // Para adiconar dps os produtos 
-    
-    // const addToCart = (id) => {
-    //     const newCart = {...states.cart, products: listProducts}
-    //     setters.setCart(newCart)
-
-    //     const listProducts = states.cart.products.map(product => {
-    //         if (product.id === id) {
-    //             const newQuantity = product.quantity + 1
-    //             const infosProduct = {
-    //                 ...product, quantity: newQuantity
-    //             }
-    //             return infosProduct
-            
-    //         } else {
-    //             return product
-    //         }
-    //     })
-    // }
 
 
     return (
@@ -66,4 +42,25 @@ const RestaurantDetailsPage = () => {
     )
 }
 
-export default RestaurantDetailsPage
+export default RestaurantDetailsPage;
+
+
+ // Para adiconar dps os produtos 
+    
+    // const addToCart = (id) => {
+    //     const newCart = {...states.cart, products: listProducts}
+    //     setters.setCart(newCart)
+
+    //     const listProducts = states.cart.products.map(product => {
+    //         if (product.id === id) {
+    //             const newQuantity = product.quantity + 1
+    //             const infosProduct = {
+    //                 ...product, quantity: newQuantity
+    //             }
+    //             return infosProduct
+            
+    //         } else {
+    //             return product
+    //         }
+    //     })
+    // }

@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useContext} from "react";
+import { GlobalContext } from "../../contexts/GlobalContext";
 import {ContainerCarrinho,
         NavBar,
         EnderecoUsuario,
@@ -13,7 +14,39 @@ import {ContainerCarrinho,
         BotaoConfirmar} from "./styled";
 
 
-        const CardFood = (props) => {
+const CardFood = () => {
+    const {states, setters, requests} = useContext(GlobalContext)
+    const {restaurante} = requests
+    console.log(restaurante)
+    const newProducts = restaurante.products
+    console.log(newProducts)
+
+    const FoodCard = newProducts && newProducts.map((product) => {
+        return(
+            <CardComidas key={product.id}>
+                <img src={product.photoUrl} alt="fot de lanche"/>
+                
+                <div>
+                    <CardInfos>
+                        <p>{product.name}</p>
+                        <p>{product.decription}</p>
+                        <p>{product.price}</p>
+                    </CardInfos>
+
+                    <Quantidade>
+                        <button>{product.quantity}</button>
+                    </Quantidade>
+                    
+                    <BotaoRemover>
+                        {/* <button onClick={() => removeItem(restaurante.products.id)}>-</button> */}
+                    </BotaoRemover>
+                </div>
+            
+            </CardComidas>
+        )
+    })
+    
+    
     return(
         <ContainerCarrinho>
             <NavBar>
@@ -26,29 +59,30 @@ import {ContainerCarrinho,
             </EnderecoUsuario>
 
             <EnderecoRestaurante>
-                <p>Bullguer Vila Madalena</p>
-                <p>R. Fradique Coutinho, 1136 - Vila Madalena</p>
-                <p>30 - 45 min</p>
+                <p>{restaurante.name}</p>
+                <p>{restaurante.address}</p>
+                <p>{restaurante.deliveryTime}</p>
             </EnderecoRestaurante>
 
-            <CardComidas>
-                <img src={props.photoUrl} alt="fot de lanche"/>
+            {FoodCard}
+            
+            {/* <CardComidas>
+                <img src={restaurante.products.photoUrl} alt="fot de lanche"/>
                 
                 <CardInfos>
-                    <p>{props.name}</p>
-                    <p>{props.decription}</p>
-                    <p>{props.price}</p>
+                    <p>{restaurante.products.name}</p>
+                    <p>{restaurante.products.decription}</p>
+                    <p>{restaurante.products.price}</p>
                 </CardInfos>
 
                 <Quantidade>
-                    <button>{props.quantity}</button>
+                    <button>{restaurante.products.quantity}</button>
                 </Quantidade>
                 
                 <BotaoRemover>
-                    <button onClick={() => props.removeItem(props.id)}>-</button>
-                    <button onClick={() => props.addItem(props.id)}>+</button>
+                    <button onClick={() => removeItem(restaurante.products.id)}>-</button>
                 </BotaoRemover>
-            </CardComidas>
+            </CardComidas> */}
 
             <Frete/>
 

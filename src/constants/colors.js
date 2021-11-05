@@ -1,2 +1,2 @@
 export const primaryColor = '#E8222E'
-export const neutralColor = '#FDFDFD'
+export const neutralColor = '#000000'
