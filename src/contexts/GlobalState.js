@@ -14,12 +14,11 @@ const GlobalState = (props) => {
     
     const restaurante = useRequestData({}, `${URL_Base}/restaurants/1`, 'restaurant')
 
-    const requests = {restaurante}
+    const requests = {restaurante, profile}
 
     
     const states = {cart, editProfile}
     const setters = {setCart, setEditProfile}
-    const requests = {profile}
 
     return (
         <GlobalContext.Provider value={{states, setters, requests}}>

@@ -36,7 +36,8 @@ const CartPage = () => {
                     ...product, quantity: newQuantity
                 }
                 return infosProduct
-
+            }
+        })}
 
     const subtotalCart = () => {
         let subtotalPrice = 0
