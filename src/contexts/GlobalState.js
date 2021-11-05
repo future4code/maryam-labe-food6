@@ -12,6 +12,10 @@ const GlobalState = (props) => {
     // Pode-se adicionar request também se necessário.
     const profile = useRequestData({}, `${URL_Base}/profile`, 'user')
     
+    const restaurante = useRequestData({}, `${URL_Base}/restaurants/1`, 'restaurant')
+
+    const requests = {restaurante}
+
     
     const states = {cart, editProfile}
     const setters = {setCart, setEditProfile}

@@ -42,3 +42,13 @@ export const address = (body, clear, history) => {
     console.log(err.response.data.message)
   })
 }
+
+export const getAddress = (setUserAddress) => {
+  axios
+  .get(`${URL_Base}/profile/address`, headers )
+    .then(response => {
+      setUserAddress(response.data.address)
+    }).catch(error => {
+      console.log(error.message)
+    })
+}

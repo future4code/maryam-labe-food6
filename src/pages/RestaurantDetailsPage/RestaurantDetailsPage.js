@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
+import GlobalState from "../../contexts/GlobalState";
 import useRequestData from "../../hooks/useRequestData"
 import { URL_Base } from "../../constants/urls"
 import { useParams } from "react-router-dom"
@@ -11,6 +12,7 @@ const RestaurantDetailsPage = () => {
     useProtectedPage()
     const params = useParams()
     //trocar o id da URL por ${params.id}
+
     const restaurant = useRequestData({}, `${URL_Base}/restaurants/4`, 'restaurant')
 
     const categories = restaurant && restaurant.products && restaurant.products.map((product) => {
@@ -47,6 +49,7 @@ const RestaurantDetailsPage = () => {
         )
     })
 
+
     return (
         <RestaurantDetailsPageContainer>
             <HeaderContainer>
@@ -70,4 +73,25 @@ const RestaurantDetailsPage = () => {
     )
 }
 
-export default RestaurantDetailsPage
+export default RestaurantDetailsPage;
+
+
+ // Para adiconar dps os produtos 
+    
+    // const addToCart = (id) => {
+    //     const newCart = {...states.cart, products: listProducts}
+    //     setters.setCart(newCart)
+
+    //     const listProducts = states.cart.products.map(product => {
+    //         if (product.id === id) {
+    //             const newQuantity = product.quantity + 1
+    //             const infosProduct = {
+    //                 ...product, quantity: newQuantity
+    //             }
+    //             return infosProduct
+            
+    //         } else {
+    //             return product
+    //         }
+    //     })
+    // }

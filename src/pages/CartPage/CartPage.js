@@ -1,95 +1,118 @@
 import React, {useState, useEffect, useContext} from "react";
-import CardFood from "../../components/CardFood/CardFood";
-import GlobalState from "../../contexts/GlobalState";
-import {} from "../../services/user";
-import useRequestData from "../../hooks/useRequestData"
+import { GlobalContext } from "../../contexts/GlobalContext";
+import { getAddress, setUserAdress } from "../../services/user";
+import {ContainerCarrinho,
+        NavBar,
+        EnderecoUsuario,
+        EnderecoRestaurante,
+        CardComidas,
+        CardInfos,
+        Quantidade,
+        BotaoRemover,
+        Frete,
+        Subtotal,
+        ContainerPagamento,
+        BotaoConfirmar} from "./styled";
 
 
 const CartPage = () => {
-    // const {states, setters} = useContext(GlobalState)
-    
-    // const [userAddress, setUserAddress] = useState(undefined)
-    // const orderProd = useRequestData({}, `${URL_Base}/restaurants/1`, 'restaurant')
+    const {requests} = useContext(GlobalContext)
+    const {restaurante} = requests
+    const newProducts = restaurante.products
+    const [userAddress, setUserAddress] = useState(undefined)
+
+    useEffect(() => {
+        getAddress()
+    }, [])
+
+    const removeToCart = (id) => {
+        const newCart = {...newProducts, products: listProducts}
+        newProducts.setCart(newCart)
+
+        const listProducts = newProducts.map(product => {
+            if (product.id === id) {
+                const newQuantity = product.quantity - 1
+                const infosProduct = {
+                    ...product, quantity: newQuantity
+                }
+                return infosProduct
 
 
-    // useEffect(() => {
-    //     Address(setUserAddress)
-    // }, [])
+    const subtotalCart = () => {
+        let subtotalPrice = 0
+
+        if ((newProducts).length !== 0) {
+            newProducts.forEach(
+            (product) => {
+              subtotalPrice += product.price * product.quantity
+            }
+        )
+            return newProducts.shipping + subtotalPrice
+        }
+        return 0
+    }
 
 
-    
-    // const addToCart = (id) => {
-    //     const newCart = [...orderProd]
-    //     setCart(newCart)
+    const ContainerFoodCard = newProducts && newProducts.map((product) => {
+        return(
+            <CardComidas key={product.id}>
+                <img src={product.photoUrl} alt="fot de lanche"/>
+                
+                <div>
+                    <CardInfos>
+                        <h3>{product.name}</h3>
+                        <p>{product.description}</p>
+                        <p>R$ {product.price}</p>
+                    </CardInfos>
 
-    //     const orderProd = products.map(product => {
-    //         if (product.id === id) {
-    //             const newQuantity = product.quantity + 1
-    //             const infosProduct = {
-    //                 ...product, quantity: newQuantity
-    //             }
-    //             return infosProduct
+                    {/* <Quantidade>
+                        <button>{product.quantity}</button>
+                    </Quantidade>
+                    
+                    <BotaoRemover>
+                        <button onClick={() => removeItem(restaurante.products.id)}>-</button>
+                    </BotaoRemover> */}
+                </div>
             
-    //         } else {
-    //             return product
-    //         }
-    //     })
-    // }
-
-    // const removeToCart = (id) => {
-    //     const newCart = [...orderProd]
-    //     setCart(newCart)
-
-    //     const orderProd = products.map(product => {
-    //         if (product.id === id) {
-    //             const newQuantity = product.quantity - 1
-    //             const infosProduct = {
-    //                 ...product, quantity: newQuantity
-    //             }
-    //             return infosProduct
-            
-    //         } else {
-    //             return product
-    //         }
-    //     })
-    // }
-
-    // const subtotalCart = () => {
-    //     let subtotalPrice= 0
-
-    //     if ((states.cart).length !== 0) {
-    //         states.cart.products.forEach(
-    //         (product) => {
-    //           subtotalPrice += product.price * product.quantity
-    //         }
-    //     )
-    //         return states.products.shipping + subtotalPrice
-    //     }
-    //     return 0
-    // }
-
-
-    // const FoodCard = states.cart.products.map((product) => {
-    //     if (product.quantity > 0) {
-    //     return(
-    //         <CardFood key={product.id}
-    //         id={product.id}
-    //         quantity={product.quantity}
-    //         photoUrl={product.photoUrl}
-    //         name={product.name}
-    //         description={product.description}
-    //         price={product.price}
-    //         addToCart={() => addToCart(product.id)}
-    //         removeToCart={() => removeToCart(product.id)}
-    //         />
-    //     )
-    //     }
-    // })
+            </CardComidas>
+        )
+    })
     
     return (
-        <div>
-            <CardFood />
-        </div>
+        <ContainerCarrinho>
+            <NavBar>
+                <h3>Meu Carrinho</h3>
+            </NavBar>
+
+            <EnderecoUsuario>
+                <p>Endereço de entrega</p>
+                <p>{userAddress}</p>
+            </EnderecoUsuario>
+
+            <EnderecoRestaurante>
+                <p>{restaurante.name}</p>
+                <p>{restaurante.address}</p>
+                <p>{restaurante.deliveryTime} min</p>
+            </EnderecoRestaurante>
+
+            {ContainerFoodCard}
+
+            <Frete>Frete R$ 10,00</Frete>
+
+            <Subtotal>
+                <p>SUBTOTAL</p>
+                <p>{subtotalCart}</p>
+            </Subtotal>
+
+            <ContainerPagamento>
+                <p>Forma de Pagamento</p>
+            </ContainerPagamento>
+
+            <BotaoConfirmar>
+                <p>Confirmar</p>
+            </BotaoConfirmar>
+        
+        </ContainerCarrinho>
     )
 }
 
