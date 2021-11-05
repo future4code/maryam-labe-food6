@@ -33,6 +33,7 @@ const FeedPage = () => {
   console.log(restaurants);
   const listRestaurants = restaurants.map((item) => {
     return (
+      
       <CardRestaurant 
         key={item.id}
         id={item.id}
