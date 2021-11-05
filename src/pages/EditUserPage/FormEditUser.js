@@ -1,10 +1,14 @@
 import { Button, TextField } from "@material-ui/core";
 import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import useForm from "../../hooks/useForm";
+import { updateProfile } from "../../services/user";
 import { ContainerEditUser } from "./styled";
 
 const FormEditUser = () => {
+
+    const history = useHistory()
 
     const { states, setters, requests } = useContext(GlobalContext)
     const {profile} = requests
@@ -17,6 +21,7 @@ const FormEditUser = () => {
     
     const handleEditUser = (event) => {
         event.preventDefault()
+        updateProfile(form, history)
     }
     
     

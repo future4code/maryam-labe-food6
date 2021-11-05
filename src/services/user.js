@@ -1,6 +1,6 @@
 import axios from "axios";
 import { URL_Base, headers } from "../constants/urls";
-import { goToAddAddress } from "../routes/coordinator";
+import { goToAddAddress, goToProfile } from "../routes/coordinator";
 import { goToFeed } from "../routes/coordinator"
 
 
@@ -39,7 +39,7 @@ export const address = (body, clear, history) => {
     clear()
     goToFeed(history)
   }).catch((err) => {
-    console.log(err.response.data.message)
+    console.log(err.message)
   })
 }
 
@@ -51,4 +51,16 @@ export const getAddress = (setUserAddress) => {
     }).catch(error => {
       console.log(error.message)
     })
+}
+
+export const updateProfile = (body, history) => {
+  axios
+  .put(`${URL_Base}/profile`, body, headers)
+  .then((res) => {
+    console.log(res)
+    goToProfile(history)
+  })
+  .catch((err) => {
+    console.log(err.response)
+  })
 }

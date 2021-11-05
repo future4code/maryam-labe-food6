@@ -1,16 +1,17 @@
 import React from "react"
-import FormEditUser from "./FormEditUser"
+import useProtectedPage from "../../hooks/useProtectedPage"
+import FormEditAddress from "./FormEditUser"
 import { HeaderContainer } from "./styled"
 
 const EditUserPage = () => {
-
+    useProtectedPage()
     
     return (
         <div>
             <HeaderContainer>
                 <p>Editar</p>
             </HeaderContainer>
-            <FormEditUser />
+            <FormEditAddress />
         </div>
     )
 }
