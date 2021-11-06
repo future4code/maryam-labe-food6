@@ -6,11 +6,6 @@ export const ContainerSignUp = styled.form`
   margin: 0 auto;
   width: 90%;
   gap: 2vh;
-
-  Button {
-    background-color: #e8222e;
-    color: black;
-  }
 `;
 
 export const HeaderSignUp = styled.div`
@@ -19,3 +14,12 @@ export const HeaderSignUp = styled.div`
   align-items: center;
   margin-top: 3rem;
 `;
+
+export const ContainerBotao = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  Button{
+    background-color: #E8222E;
+  } 
+`
