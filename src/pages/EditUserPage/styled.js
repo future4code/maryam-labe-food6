@@ -1,9 +1,10 @@
 import styled from "styled-components"
+import { ArrowBackIosRounded } from "@material-ui/icons"
 
 export const HeaderContainer = styled.div `
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     height: 4rem;
     margin: 0 0 1rem;
     backdrop-filter: blur(10px);
@@ -13,7 +14,17 @@ export const HeaderContainer = styled.div `
     p {
         font-family: Roboto;
         letter-spacing: -0.39px;
+        display: flex;
+        width: 55vw
     }
+`
+
+export const IconBack = styled(ArrowBackIosRounded) `
+    width: 1.44rem;
+    height: 1.5rem;
+    margin: 0.625rem 3.373rem 0.625rem 1rem;
+    object-fit: contain;
+    cursor: pointer;
 `
 
 export const ContainerEditUser = styled.form`
