@@ -131,4 +131,4 @@ Agora é só testar em seu navegador!
 
 👋🏽 Entre em contato!
 
-```Voltar ao Topo```
+<a href="#top">Voltar para o topo</a>
