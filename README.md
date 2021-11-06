@@ -7,7 +7,7 @@ Projeto final do curso de Front-End da Labenu. A ideia foi desenvolver um aplica
 
 # 🔗 Link para acessar
 
-- link
+- https://ifuture-4food.surge.sh/
 
 
 # 📲 Apresentação do aplicativo
