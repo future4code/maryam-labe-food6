@@ -7,13 +7,8 @@ export const ContainerAddress = styled.form`
     width: 70vw;
     gap: 2vh;
 
-    select{
-        padding: 2vh;
-        border-radius: 10px;
-    }
-    input {
-        padding: 2vh;
-        border-radius: 10px;
+    Button{
+        background-color: #E8222E;
     }
 `
 

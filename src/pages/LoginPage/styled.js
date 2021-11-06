@@ -46,6 +46,10 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+`
+export const ContainerButton = styled.div`
+  display: flex;
+  flex-direction: column;
 
   Button {
   background-color: #e8222e;
