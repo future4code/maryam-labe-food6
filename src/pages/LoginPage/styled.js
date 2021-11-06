@@ -58,5 +58,6 @@ export const ContainerButton = styled.div`
   height: 2.625rem;
   margin: 0.5rem 0 1rem;
   padding: 0 1rem;
+  cursor: pointer;
 }
 `
