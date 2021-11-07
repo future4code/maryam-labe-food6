@@ -12,7 +12,7 @@ export const HeaderSignUp = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 3rem;
+  margin-top: 1.5rem;
 `;
 
 export const ContainerBotao = styled.div`

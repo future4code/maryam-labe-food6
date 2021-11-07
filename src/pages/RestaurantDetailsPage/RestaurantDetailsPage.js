@@ -8,6 +8,7 @@ import { RestaurantDetailsPageContainer, ProductCard, DivisorLine, CategoryTitle
 import back from '../../assets/imgs/back.png'
 import { GlobalContext } from "../../contexts/GlobalContext";
 import { goToFeed } from "../../routes/coordinator";
+import Header from "../../components/Header/Header";
 
 
 const RestaurantDetailsPage = () => {
@@ -79,10 +80,7 @@ const RestaurantDetailsPage = () => {
 
     return (
         <RestaurantDetailsPageContainer>
-            <HeaderContainer>
-                <img src={back} onClick={() => goToFeed(history)}/>
-                <p>Restaurante</p>
-            </HeaderContainer>
+            <Header />
             <BodyContainer>
                 <RestaurantDetails>
                     <img src={restaurant.logoUrl}></img>
@@ -90,7 +88,7 @@ const RestaurantDetailsPage = () => {
                     <RestaurantInformation>{restaurant.category}</RestaurantInformation>
                     <div>
                         <RestaurantInformation>{(restaurant.deliveryTime) - 10} - {restaurant.deliveryTime} min</RestaurantInformation>
-                        <RestaurantInformation>Frete R${restaurant && restaurant.shipping && restaurant.shipping.toFixed(2)}</RestaurantInformation>
+                        <RestaurantInformation>Frete R$ {restaurant && restaurant.shipping && restaurant.shipping.toFixed(2)}</RestaurantInformation>
                     </div>
                     <RestaurantInformation>{restaurant.address}</RestaurantInformation>
                 </RestaurantDetails>
