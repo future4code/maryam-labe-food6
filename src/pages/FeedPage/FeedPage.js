@@ -3,11 +3,14 @@ import { URL_Base } from "../../constants/urls";
 import axios from "axios";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import {CardRestaurant, Img, Td} from "./styled"
+import { goToRestaurantDetails } from "../../routes/coordinator";
+import { useHistory } from "react-router-dom";
 
 const FeedPage = () => {
   useProtectedPage();
 
   const [restaurants, setRestaurants] = useState([]);
+  const history = useHistory()
   const url = `${URL_Base}/restaurants`;
 
   const headers = {
@@ -34,7 +37,8 @@ const FeedPage = () => {
   const listRestaurants = restaurants.map((item) => {
     return (
       
-      <CardRestaurant 
+      <CardRestaurant
+        onClick={() => goToRestaurantDetails(history, item.id)}
         key={item.id}
         id={item.id}
         name={item.name}
