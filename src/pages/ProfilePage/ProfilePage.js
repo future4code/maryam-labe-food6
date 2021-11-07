@@ -1,14 +1,16 @@
-import React, {useContext} from "react"
+import React, {useContext, useEffect} from "react"
 import { HeaderContainer, InfoProfileContainer, AddressContainer, IconCreateOutlined, HistoryContainer, OrderHistorys } from "./styled"
-import { goToEditUser } from "../../routes/coordinator"
+import { goToEditAddress, goToEditUser } from "../../routes/coordinator"
 import { useHistory } from "react-router-dom"
 import { GlobalContext } from "../../contexts/GlobalContext"
+import useProtectedPage from "../../hooks/useProtectedPage"
 
 const ProfilePage = () => {
+    useProtectedPage()
     const {states, setters, requests} = useContext(GlobalContext)
     const history = useHistory()
+    
     const {profile} = requests
-
     const {setCart, setEditProfile} = setters
     setEditProfile(profile)
 
@@ -31,7 +33,7 @@ const ProfilePage = () => {
                     <p>Endereço cadastrado</p>
                     <p>{profile.address}</p>
                 </div>
-                <IconCreateOutlined />
+                <IconCreateOutlined onClick={() => goToEditAddress(history)}/>
             </AddressContainer>
             <HistoryContainer>
                 <p>Histórico de pedidos</p>

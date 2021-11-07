@@ -3,9 +3,9 @@ import { useHistory } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import { address } from "../../services/user";
 import { ContainerAddress } from "./styled";
+import { TextField, Select, MenuItem, Button } from "@material-ui/core";
 
 const AddressForm = () => {
-
   const [form, onChange, clear] = useForm({
     street: "",
     number: "",
@@ -25,78 +25,85 @@ const AddressForm = () => {
   return (
     <div>
       <ContainerAddress onSubmit={handleAddress}>
-        <input
+        <TextField
           name={"street"}
           value={form.street}
           onChange={onChange}
-          placeholder={"Rua"}
+          label={"Rua"}
           required
+          variant="outlined"
         />
-        <input
+        <TextField
           name={"number"}
           value={form.number}
           onChange={onChange}
           type="number"
-          placeholder={"Numero"}
+          label={"Numero"}
           required
+          variant="outlined"
         />
-        <input
+        <TextField
           name={"neighbourhood"}
           value={form.neighbourhood}
           onChange={onChange}
-          placeholder={"Bairro"}
+          label={"Bairro"}
           required
+          variant="outlined"
         />
-        <input
+        <TextField
           name={"city"}
           value={form.city}
           onChange={onChange}
-          placeholder={"Cidade"}
+          label={"Cidade"}
           required
+          variant="outlined"
         />
-        <select
+        <Select
           id="estado"
           name="state"
           value={form.state}
           onChange={onChange}
           required
+          label="Select"
+          variant="outlined"
         >
-            <option defaultValue>Selecione Estado</option>
-          <option value="AC">Acre</option>
-          <option value="AL">Alagoas</option>
-          <option value="AP">Amapá</option>
-          <option value="AM">Amazonas</option>
-          <option value="BA">Bahia</option>
-          <option value="CE">Ceará</option>
-          <option value="DF">Distrito Federal</option>
-          <option value="ES">Espírito Santo</option>
-          <option value="GO">Goiás</option>
-          <option value="MA">Maranhão</option>
-          <option value="MT">Mato Grosso</option>
-          <option value="MS">Mato Grosso do Sul</option>
-          <option value="MG">Minas Gerais</option>
-          <option value="PA">Pará</option>
-          <option value="PB">Paraíba</option>
-          <option value="PR">Paraná</option>
-          <option value="PE">Pernambuco</option>
-          <option value="PI">Piauí</option>
-          <option value="RJ">Rio de Janeiro</option>
-          <option value="RN">Rio Grande do Norte</option>
-          <option value="RS">Rio Grande do Sul</option>
-          <option value="RO">Rondônia</option>
-          <option value="RR">Roraima</option>
-          <option value="SC">Santa Catarina</option>
-          <option value="SP">São Paulo</option>
-          <option value="SE">Sergipe</option>
-          <option value="TO">Tocantins</option>
-        </select>
-        <input
+          <MenuItem defaultValue>Selecione Estado</MenuItem>
+          <MenuItem value="AC">Acre</MenuItem>
+          <MenuItem value="AL">Alagoas</MenuItem>
+          <MenuItem value="AP">Amapá</MenuItem>
+          <MenuItem value="AM">Amazonas</MenuItem>
+          <MenuItem value="BA">Bahia</MenuItem>
+          <MenuItem value="CE">Ceará</MenuItem>
+          <MenuItem value="DF">Distrito Federal</MenuItem>
+          <MenuItem value="ES">Espírito Santo</MenuItem>
+          <MenuItem value="GO">Goiás</MenuItem>
+          <MenuItem value="MA">Maranhão</MenuItem>
+          <MenuItem value="MT">Mato Grosso</MenuItem>
+          <MenuItem value="MS">Mato Grosso do Sul</MenuItem>
+          <MenuItem value="MG">Minas Gerais</MenuItem>
+          <MenuItem value="PA">Pará</MenuItem>
+          <MenuItem value="PB">Paraíba</MenuItem>
+          <MenuItem value="PR">Paraná</MenuItem>
+          <MenuItem value="PE">Pernambuco</MenuItem>
+          <MenuItem value="PI">Piauí</MenuItem>
+          <MenuItem value="RJ">Rio de Janeiro</MenuItem>
+          <MenuItem value="RN">Rio Grande do Norte</MenuItem>
+          <MenuItem value="RS">Rio Grande do Sul</MenuItem>
+          <MenuItem value="RO">Rondônia</MenuItem>
+          <MenuItem value="RR">Roraima</MenuItem>
+          <MenuItem value="SC">Santa Catarina</MenuItem>
+          <MenuItem value="SP">São Paulo</MenuItem>
+          <MenuItem value="SE">Sergipe</MenuItem>
+          <MenuItem value="TO">Tocantins</MenuItem>
+        </Select>
+        <TextField
           name={"complement"}
           value={form.complement}
           onChange={onChange}
-          placeholder={"Complemento"}
+          label={"Complemento"}
+          variant="outlined"
         />
-        <button type="submit">Salvar</button>
+        <Button type="submit">Salvar</Button>
       </ContainerAddress>
     </div>
   );

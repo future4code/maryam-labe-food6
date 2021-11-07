@@ -12,10 +12,13 @@ const GlobalState = (props) => {
     // Pode-se adicionar request também se necessário.
     const profile = useRequestData({}, `${URL_Base}/profile`, 'user')
     const restaurante = useRequestData({}, `${URL_Base}/restaurants/1`, 'restaurant')
-    const requests = {restaurante, profile}
+    const addressUser = useRequestData({}, `${URL_Base}/profile/address`, 'address')
+
+    
     const states = {cart, editProfile}
     const setters = {setCart, setEditProfile}
-
+    const requests = {restaurante, profile, addressUser}
+    
     return (
         <GlobalContext.Provider value={{states, setters, requests}}>
             {props.children}

@@ -14,7 +14,6 @@ import {ContainerCarrinho,
         ContainerPagamento,
         BotaoConfirmar} from "./styled";
 
-
 const CartPage = () => {
     const {requests} = useContext(GlobalContext)
     const {restaurante} = requests

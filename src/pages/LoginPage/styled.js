@@ -46,6 +46,10 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+`
+export const ContainerButton = styled.div`
+  display: flex;
+  flex-direction: column;
 
   Button {
   background-color: #e8222e;
@@ -54,5 +58,6 @@ export const Form = styled.form`
   height: 2.625rem;
   margin: 0.5rem 0 1rem;
   padding: 0 1rem;
+  cursor: pointer;
 }
 `

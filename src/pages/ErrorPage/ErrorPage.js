@@ -1,9 +1,18 @@
 import React from "react"
+import error from "../../assets/imgs/error.png"
+import { ErrorPageContainer, ErrorImagem, Titulo } from "./styled"
+
+import Footer from "../../components/Footer/Footer"
 
 const ErrorPage = () => {
     return (
         <div>
-            <h1>ErrorPage</h1>
+            <ErrorPageContainer>
+                <ErrorImagem src={error} alt="imagem de erro"/>
+                <Titulo>Erro 404 - Página não encontrada</Titulo>
+            </ErrorPageContainer>
+            
+            <Footer />
         </div>
     )
 }
