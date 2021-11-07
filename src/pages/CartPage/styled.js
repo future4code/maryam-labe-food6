@@ -1,34 +1,5 @@
 import styled from "styled-components";
 
-export const ContainerCarrinho = styled.div`
-    width: 22.5rem;
-    height: 40rem;
-    margin: 0 auto;
-`
-// Barra de Navegação 
-
-export const NavBar = styled.div`
-    width: 22.5rem;
-    height: 4rem;
-    margin: 0 0 0.063rem;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0.5px 0 0 rgba(0, 0, 0, 0.25);
-    background-color: #fff;
-
-    h3{
-        width: 22.5rem;
-        height: 4rem;
-        margin: 0 0 0.063rem;
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
-        color: black;
-        
-        align-items: center;
-        justify-content: center;
-        display: flex;
-    }
-`
 
 // Container Usuário
 
@@ -64,7 +35,6 @@ export const EnderecoUsuario = styled.div`
 // Container Restaurante
 
 export const EnderecoRestaurante = styled.div`
-    width: 22.5rem;
     height: 4.75rem;
     margin: 0.063rem 0 0.5rem;
     padding: 1rem;

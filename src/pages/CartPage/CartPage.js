@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useContext} from "react";
+import Header from "../../components/Header/Header";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import { getAddress, setUserAdress } from "../../services/user";
 import {ContainerCarrinho,
@@ -79,10 +80,8 @@ const CartPage = () => {
     })
     
     return (
-        <ContainerCarrinho>
-            <NavBar>
-                <h3>Meu Carrinho</h3>
-            </NavBar>
+        <div>
+            <Header />
 
             <EnderecoUsuario>
                 <p>Endereço de entrega</p>
@@ -112,7 +111,7 @@ const CartPage = () => {
                 <p>Confirmar</p>
             </BotaoConfirmar>
         
-        </ContainerCarrinho>
+        </div>
     )
 }
 

@@ -5,6 +5,7 @@ import useProtectedPage from "../../hooks/useProtectedPage";
 import {CardRestaurant, Img, Td} from "./styled"
 import { goToRestaurantDetails } from "../../routes/coordinator";
 import { useHistory } from "react-router-dom";
+import Header from "../../components/Header/Header";
 
 const FeedPage = () => {
   useProtectedPage();
@@ -37,14 +38,7 @@ const FeedPage = () => {
   const listRestaurants = restaurants.map((item) => {
     return (
       
-      <CardRestaurant
-        onClick={() => goToRestaurantDetails(history, item.id)}
-        key={item.id}
-        id={item.id}
-        name={item.name}
-        deliveryTime={item.deliveryTime}
-        shipping={item.shipping}
-        image={<img src={item.logoUrl} alt="logo" />}>
+      <CardRestaurant onClick={() => goToRestaurantDetails(history, item.id)} key={item.id}>
         <h2>{item.name}</h2>
         <Img src={item.logoUrl}/>
         <Td>
@@ -58,7 +52,7 @@ const FeedPage = () => {
 
   return (
     <div>
-      <h1>RESTAURANTES</h1>
+      <Header />
       {listRestaurants}
     </div>
   );

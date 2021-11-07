@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    position: fixed;
-    height: 7.5rem;
-    width: 9.186rem;
+    box-shadow: 0 -0.5px 0 0 rgb(0 0 0 / 25%);
     background-color: white;
+    bottom: 0;
+    left: 0;
+    position: fixed;
 `
 
 export const FooterIcones = styled.div`

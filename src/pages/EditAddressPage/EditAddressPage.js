@@ -1,7 +1,7 @@
 import React from "react"
 import { useHistory } from "react-router-dom"
+import Header from "../../components/Header/Header"
 import useProtectedPage from "../../hooks/useProtectedPage"
-import { goToProfile } from "../../routes/coordinator"
 import FormEditUser from "./FormEditAddress"
 import { HeaderContainer, IconBack } from "./styled"
 
@@ -11,10 +11,7 @@ const EditAddressPage = () => {
 
     return (
         <div>
-            <HeaderContainer>
-                <IconBack  onClick={() => goToProfile(history)}/>
-                <p>Endereço</p>
-            </HeaderContainer>
+            <Header />
             <FormEditUser />
         </div>
     )

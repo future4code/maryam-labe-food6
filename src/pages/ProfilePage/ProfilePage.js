@@ -4,6 +4,7 @@ import { goToEditAddress, goToEditUser } from "../../routes/coordinator"
 import { useHistory } from "react-router-dom"
 import { GlobalContext } from "../../contexts/GlobalContext"
 import useProtectedPage from "../../hooks/useProtectedPage"
+import Header from "../../components/Header/Header"
 
 const ProfilePage = () => {
     useProtectedPage()
@@ -17,9 +18,7 @@ const ProfilePage = () => {
 
     return (
         <div>
-            <HeaderContainer>
-                <p>Meu perfil</p>
-            </HeaderContainer>
+            <Header />
             <InfoProfileContainer>
                 <div>
                     <p>{profile.name}</p>
