@@ -17,11 +17,12 @@ const RestaurantDetailsPage = () => {
     const { setters, states } = useContext(GlobalContext)
     const history = useHistory()
     const restaurant = useRequestData({}, `${URL_Base}/restaurants/${params.id}`, 'restaurant')
-
+    const { setCart, setEditProfile } = setters
+    const { cart, editProfile } = states
 
     //função para add ao carrinho
     const addToCart = (id) => {
-        const listProducts = states.cart && states.cart.products && states.cart.products.map(product => {
+        const newProducts = cart && cart.products && cart.products.map(product => {
             if (product.id === id) {
                 const newQuantity = product.quantity + 1
                 const infosProduct = {
@@ -35,9 +36,9 @@ const RestaurantDetailsPage = () => {
                 return product
             }
         })
-        const newCart = { ...states.cart, products: listProducts }
+        const newCart = { ...cart, products: newProducts }
         setters.setCart(newCart)
-        console.log(states.cart)
+        console.log(cart)
     }
 
     // array de categorias

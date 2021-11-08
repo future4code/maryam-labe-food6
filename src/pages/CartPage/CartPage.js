@@ -18,13 +18,9 @@ import {ContainerCarrinho,
 
 const CartPage = () => {
     const {requests} = useContext(GlobalContext)
-    const {restaurante} = requests
+    const {restaurante, profile} = requests
     const newProducts = restaurante.products
-    const [userAddress, setUserAddress] = useState(undefined)
 
-    useEffect(() => {
-        getAddress()
-    }, [])
 
     const removeToCart = (id) => {
         const newCart = {...newProducts, products: listProducts}
@@ -86,7 +82,7 @@ const CartPage = () => {
             <div>
                 <EnderecoUsuario>
                     <p>Endereço de entrega</p>
-                    <p>{userAddress}</p>
+                    <p>{profile.address}</p>
                 </EnderecoUsuario>
 
                 <EnderecoRestaurante>
@@ -97,7 +93,7 @@ const CartPage = () => {
 
                 {ContainerFoodCard}
 
-                <Frete>Frete R$ 10,00</Frete>
+                <Frete>Frete R$ {restaurante.shipping},00</Frete>
 
                 <Subtotal>
                     <p>SUBTOTAL</p>
