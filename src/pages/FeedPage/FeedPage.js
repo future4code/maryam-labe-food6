@@ -6,6 +6,7 @@ import {CardRestaurant, Img, Td} from "./styled"
 import { goToRestaurantDetails } from "../../routes/coordinator";
 import { useHistory } from "react-router-dom";
 import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 
 const FeedPage = () => {
   useProtectedPage();
@@ -44,7 +45,7 @@ const FeedPage = () => {
         <Td>
         <h4>{item.deliveryTime} minutos</h4>
         </Td>
-        <h2>Taxa R${item.shipping},00</h2>
+        <h2>Taxa R$ {item.shipping},00</h2>
         
       </CardRestaurant>
     );
@@ -54,6 +55,7 @@ const FeedPage = () => {
     <div>
       <Header />
       {listRestaurants}
+      <Footer />
     </div>
   );
 };
