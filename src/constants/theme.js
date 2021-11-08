@@ -11,7 +11,12 @@ export const theme = createTheme({
         text: {
             primary: neutralColor,
             secondary: '#000000'
+        },
+        secondary: {
+            main: '#000000',
+            contrastText: primaryColor
         }
+
     },
     typography: {
         fontFamily: [

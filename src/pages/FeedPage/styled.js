@@ -20,3 +20,7 @@ export const CardMedias = styled(CardMedia)`
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 `
+
+export const Main = styled.div `
+    margin-bottom: 100px;
+`

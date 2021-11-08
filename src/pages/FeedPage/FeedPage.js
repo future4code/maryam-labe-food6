@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { URL_Base } from "../../constants/urls";
 import axios from "axios";
 import useProtectedPage from "../../hooks/useProtectedPage";
-import { CardMedias, CardRestaurant, ContainerInfo } from "./styled";
+import { CardMedias, CardRestaurant, ContainerInfo, Main } from "./styled";
 import { goToRestaurantDetails } from "../../routes/coordinator";
 import { useHistory } from "react-router-dom";
 import Header from "../../components/Header/Header";
@@ -63,7 +63,7 @@ const FeedPage = () => {
                 <span>{(item.deliveryTime) - 10} - {item.deliveryTime} min</span>
                 <span>
                   {item.shipping ? (
-                    <span>Frete R${item.shipping},00</span>
+                    <span>Frete R$ {item.shipping},00</span>
                   ) : (
                     <span>Frete grátis</span>
                   )}
@@ -79,7 +79,9 @@ const FeedPage = () => {
   return (
     <div>
       <Header />
-      {listRestaurants}
+      <Main>
+        {listRestaurants}
+      </Main>
       <Footer />
     </div>
   );

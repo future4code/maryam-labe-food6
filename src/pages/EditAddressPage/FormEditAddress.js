@@ -1,10 +1,10 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@material-ui/core";
+import { Button, CircularProgress, FormControl, InputLabel, MenuItem, Select, TextField } from "@material-ui/core";
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import useForm from "../../hooks/useForm";
 import { goToProfile } from "../../routes/coordinator";
-import { address, getAddress, updateProfile } from "../../services/user";
+import { addressEdit, getAddress, updateProfile } from "../../services/user";
 import { ContainerEditAddress } from "./styled";
 
 const FormEditAddress = () => {
@@ -21,11 +21,12 @@ const FormEditAddress = () => {
         state: `${addressUser.state}`,
         complement: `${addressUser.complement}`,
     })
+    const [isLoading, setIsLoading] = useState(false)
+
     
     const handleEditAddress = (event) => {
         event.preventDefault()
-        address(form)
-        goToProfile(history)
+        addressEdit(form, history, setIsLoading)
     }
 
     return (
@@ -111,7 +112,9 @@ const FormEditAddress = () => {
                         <MenuItem value="TO">Tocantins</MenuItem>
                     </Select>
                 </FormControl>
-                <Button type="submit">Salvar</Button>
+                <Button type="submit">
+                    {isLoading ? <CircularProgress size={24} color={"secondary"} thickness={4}/> : "Salvar"}
+                </Button>
             </ContainerEditAddress>
         </div>
     )
