@@ -83,6 +83,9 @@ Projeto final do curso de Front-End da Labenu. A ideia foi desenvolver um aplica
 
 # 🚧 Em desenvolvimento
 
+### Fluxo de Login/Cadastro:
+- Precisa-se atualizar(Usuário precisa dar f5 na tela) a página de cadastro de endereço para que o usuário possa entrar no aplicativo/página de Feed.
+
 ### Carrinho e Finalizar Compra:
 - O usuário deve ser capaz de visualizar a lista de itens que adicionou ao carrinho. Caso não tenha adicionado nenhum item, deverá ver uma mensagem de "Carrinho Vazio".
 - O usuário deve visualizar, no topo da tela, o endereço de entrega.
@@ -115,6 +118,10 @@ code . ||  cd ./maryam-labe-food6 (Passo acima)
 
 #Com o terminal aberto rodar o comando
 $ npm install (para instalar as dependências necessárias)
+$ npm install axios
+$ npm install styled-components
+$ npm install react-router-dom
+$ npm install @material-ui/core @material-ui/icons
 
 #Agora só rodar o projeto com o comando
 $ npm run start
