@@ -2,16 +2,21 @@ import React, { useState, useEffect } from "react";
 import { URL_Base } from "../../constants/urls";
 import axios from "axios";
 import useProtectedPage from "../../hooks/useProtectedPage";
-import {CardRestaurant, Img, Td} from "./styled"
+import { CardMedias, CardRestaurant, ContainerInfo } from "./styled";
 import { goToRestaurantDetails } from "../../routes/coordinator";
 import { useHistory } from "react-router-dom";
 import Header from "../../components/Header/Header";
+import {
+  CardActionArea,
+  CardContent,
+  Typography,
+} from "@material-ui/core";
 
 const FeedPage = () => {
   useProtectedPage();
 
   const [restaurants, setRestaurants] = useState([]);
-  const history = useHistory()
+  const history = useHistory();
   const url = `${URL_Base}/restaurants`;
 
   const headers = {
@@ -34,18 +39,37 @@ const FeedPage = () => {
         console.log(err.message);
       });
   };
-  console.log(restaurants);
   const listRestaurants = restaurants.map((item) => {
     return (
-      
-      <CardRestaurant onClick={() => goToRestaurantDetails(history, item.id)} key={item.id}>
-        <h2>{item.name}</h2>
-        <Img src={item.logoUrl}/>
-        <Td>
-        <h4>{item.deliveryTime} minutos</h4>
-        </Td>
-        <h2>Taxa R${item.shipping},00</h2>
-        
+      <CardRestaurant>
+        <CardActionArea
+          onClick={() => goToRestaurantDetails(history, item.id)}
+          key={item.id}
+        >
+          <CardMedias
+            component="img"
+            height="140"
+            image={item.logoUrl}
+            alt="Logo restaurant"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {item.name}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              <ContainerInfo>
+                <span>{(item.deliveryTime) - 10} - {item.deliveryTime} min</span>
+                <span>
+                  {item.shipping ? (
+                    <span>Frete R${item.shipping},00</span>
+                  ) : (
+                    <span>Frete grátis</span>
+                  )}
+                </span>
+              </ContainerInfo>
+            </Typography>
+          </CardContent>
+        </CardActionArea>
       </CardRestaurant>
     );
   });
