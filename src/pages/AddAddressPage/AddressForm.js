@@ -4,8 +4,12 @@ import useForm from "../../hooks/useForm";
 import { address } from "../../services/user";
 import { ContainerAddress } from "./styled";
 import { TextField, Select, MenuItem, Button, FormControl, InputLabel, CircularProgress } from "@material-ui/core";
+import axios from "axios";
+import { URL_Base } from "../../constants/urls";
+import { goToFeed } from "../../routes/coordinator";
 
 const AddressForm = () => {
+  const token = localStorage.getItem("token")
   const [form, onChange, clear] = useForm({
     street: "",
     number: "",
@@ -15,13 +19,33 @@ const AddressForm = () => {
     complement: "",
   });
   const [isLoading, setIsLoading] = useState(false)
-
+  
+  const addAddress = () => {
+    const headers = { 
+      headers: {
+        auth: `${token}`
+    }}
+    setIsLoading(true)
+    
+    axios
+    .put(`${URL_Base}/address`, form, headers)
+    .then((res) => {
+      setIsLoading(false)
+      localStorage.setItem('token', res.data.token)
+      goToFeed(history)
+      clear()
+    })
+    .catch((err) => {
+      setIsLoading(false)
+      console.log(err.message)
+    })
+  }
 
   const history = useHistory();
 
   const handleAddress = (ev) => {
     ev.preventDefault();
-    address(form, clear, history, setIsLoading);
+    addAddress()
   };
 
   return (
