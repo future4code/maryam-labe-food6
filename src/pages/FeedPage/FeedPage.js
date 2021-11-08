@@ -11,6 +11,8 @@ import {
   CardContent,
   Typography,
 } from "@material-ui/core";
+import Footer from "../../components/Footer/Footer";
+
 
 const FeedPage = () => {
   useProtectedPage();
@@ -78,6 +80,7 @@ const FeedPage = () => {
     <div>
       <Header />
       {listRestaurants}
+      <Footer />
     </div>
   );
 };

@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom"
 import { GlobalContext } from "../../contexts/GlobalContext"
 import useProtectedPage from "../../hooks/useProtectedPage"
 import Header from "../../components/Header/Header"
+import Footer from "../../components/Footer/Footer"
 
 const ProfilePage = () => {
     useProtectedPage()
@@ -40,6 +41,7 @@ const ProfilePage = () => {
             <OrderHistorys>
                 <p>Você não realizou nenhum pedido</p>
             </OrderHistorys>
+            <Footer />
         </div>
     )
 }

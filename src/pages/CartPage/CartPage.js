@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useContext} from "react";
+import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import { getAddress, setUserAdress } from "../../services/user";
@@ -82,35 +83,36 @@ const CartPage = () => {
     return (
         <div>
             <Header />
+            <div>
+                <EnderecoUsuario>
+                    <p>Endereço de entrega</p>
+                    <p>{userAddress}</p>
+                </EnderecoUsuario>
 
-            <EnderecoUsuario>
-                <p>Endereço de entrega</p>
-                <p>{userAddress}</p>
-            </EnderecoUsuario>
+                <EnderecoRestaurante>
+                    <p>{restaurante.name}</p>
+                    <p>{restaurante.address}</p>
+                    <p>{restaurante.deliveryTime} min</p>
+                </EnderecoRestaurante>
 
-            <EnderecoRestaurante>
-                <p>{restaurante.name}</p>
-                <p>{restaurante.address}</p>
-                <p>{restaurante.deliveryTime} min</p>
-            </EnderecoRestaurante>
+                {ContainerFoodCard}
 
-            {ContainerFoodCard}
+                <Frete>Frete R$ 10,00</Frete>
 
-            <Frete>Frete R$ 10,00</Frete>
+                <Subtotal>
+                    <p>SUBTOTAL</p>
+                    <p>{subtotalCart}</p>
+                </Subtotal>
 
-            <Subtotal>
-                <p>SUBTOTAL</p>
-                <p>{subtotalCart}</p>
-            </Subtotal>
+                <ContainerPagamento>
+                    <p>Forma de Pagamento</p>
+                </ContainerPagamento>
 
-            <ContainerPagamento>
-                <p>Forma de Pagamento</p>
-            </ContainerPagamento>
-
-            <BotaoConfirmar>
-                <p>Confirmar</p>
-            </BotaoConfirmar>
-        
+                <BotaoConfirmar>
+                    <p>Confirmar</p>
+                </BotaoConfirmar>
+            </div>
+                <Footer />
         </div>
     )
 }

@@ -243,7 +243,8 @@ export const BotaoConfirmar = styled.button`
     border-radius: 2px;
     background-color: #e8222e;
     cursor: pointer;
-
+    margin-bottom: 90px;
+    
     p{
         width: 18.5rem;
         height: 1.125rem;
