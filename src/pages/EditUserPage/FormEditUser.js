@@ -1,5 +1,5 @@
-import { Button, TextField } from "@material-ui/core";
-import React, { useContext } from "react";
+import { Button, CircularProgress, TextField } from "@material-ui/core";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import useForm from "../../hooks/useForm";
@@ -18,10 +18,13 @@ const FormEditUser = () => {
         email: `${profile.email}`,
         cpf: `${profile.cpf}`,
     })
+
+    const [isLoading, setIsLoading] = useState(false)
+
     
     const handleEditUser = (event) => {
         event.preventDefault()
-        updateProfile(form, history)
+        updateProfile(form, history, setIsLoading)
     }
     
     
@@ -56,7 +59,9 @@ const FormEditUser = () => {
                     title="CPF inválido - Use apenas números"
                     required
                 />
-                <Button type="submit">Salvar</Button>
+                <Button type="submit">
+                    {isLoading ? <CircularProgress size={24} color={"secondary"} thickness={4}/> : "Salvar"}
+                </Button>
             </ContainerEditUser>
         </div>
     )
