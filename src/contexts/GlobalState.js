@@ -6,18 +6,18 @@ import { GlobalContext } from "./GlobalContext";
 const GlobalState = (props) => {
     // Adicionar estados importantes para o app todo.
     const [cart, setCart] = useState([])
-    const [editProfile, setEditProfile] = useState({})
+    const [restaurants, setRestaurants] = useState([]);
+    const [profile, setProfile] = useState({})
 
     
     // Pode-se adicionar request também se necessário.
-    const profile = useRequestData({}, `${URL_Base}/profile`, 'user')
     const restaurante = useRequestData({}, `${URL_Base}/restaurants/1`, 'restaurant')
     const addressUser = useRequestData({}, `${URL_Base}/profile/address`, 'address')
 
     
-    const states = {cart, editProfile}
-    const setters = {setCart, setEditProfile}
-    const requests = {restaurante, profile, addressUser}
+    const states = {cart, restaurants, profile}
+    const setters = {setCart, setRestaurants, setProfile}
+    const requests = {restaurante, addressUser}
     
     return (
         <GlobalContext.Provider value={{states, setters, requests}}>

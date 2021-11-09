@@ -1,9 +1,13 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { headers } from "../constants/urls"
 
-const useRequestData = (initialData, url, parametro) => {
+const useRequestData = (initialData, url, parametro, token) => {
     const [data, setData] = useState(initialData)
+    const headers = {
+        headers: {
+            auth: token
+        }
+    }
 
     useEffect(() => {
         axios
@@ -20,7 +24,7 @@ const useRequestData = (initialData, url, parametro) => {
         .catch((err) => {
             console.log(err.response)
         })
-    }, [url, data])
+    }, [url])
 
     return data
 }

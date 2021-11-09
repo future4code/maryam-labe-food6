@@ -6,16 +6,19 @@ import { GlobalContext } from "../../contexts/GlobalContext"
 import useProtectedPage from "../../hooks/useProtectedPage"
 import Header from "../../components/Header/Header"
 import Footer from "../../components/Footer/Footer"
+import useGetProfile from "../../services/useGetProfile"
 
 const ProfilePage = () => {
     useProtectedPage()
     const {states, setters, requests} = useContext(GlobalContext)
     const history = useHistory()
-    
-    const {profile} = requests
-    const {setCart, setEditProfile} = setters
-    setEditProfile(profile)
+    const {profile} = states
+    const { getProfile } = useGetProfile()
+    const token = localStorage.getItem("token")
 
+    useEffect(() => {
+        getProfile(token)
+    }, [])
 
     return (
         <div>

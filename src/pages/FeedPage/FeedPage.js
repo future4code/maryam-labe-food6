@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { URL_Base } from "../../constants/urls";
-import axios from "axios";
+import React, { useState, useEffect, useContext } from "react";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import { CardMedias, CardRestaurant, ContainerInfo, Main } from "./styled";
 import { goToRestaurantDetails } from "../../routes/coordinator";
@@ -12,38 +10,42 @@ import {
   Typography,
 } from "@material-ui/core";
 import Footer from "../../components/Footer/Footer";
+import { GlobalContext } from "../../contexts/GlobalContext";
+import useGetRestaurants from "../../services/useGetRestaurants";
 
 
 const FeedPage = () => {
   useProtectedPage();
 
-  const [restaurants, setRestaurants] = useState([]);
   const history = useHistory();
-  const url = `${URL_Base}/restaurants`;
-
-  const headers = {
-    headers: {
-      Auth: localStorage.getItem("token"),
-    },
-  };
+  const token = localStorage.getItem("token")
+  const {states} = useContext(GlobalContext)
+  const {restaurants} = states
+  const { getRestaurants } = useGetRestaurants()
 
   useEffect(() => {
-    getRestaurants();
-  }, []);
+    getRestaurants(token)
+  })
 
-  const getRestaurants = () => {
-    axios
-      .get(url, headers)
-      .then((res) => {
-        setRestaurants(res.data.restaurants);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
+  // const restaurants = useRequestData([], `${URL_Base}/restaurants`, 'restaurants', token)
+
+  // useEffect(() => {
+  //   getRestaurants();
+  // }, []);
+
+  // const getRestaurants = () => {
+  //   axios
+  //     .get(url, headers)
+  //     .then((res) => {
+  //       setRestaurants(res.data.restaurants);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.message);
+  //     });
+  // };
   const listRestaurants = restaurants.map((item) => {
     return (
-      <CardRestaurant>
+      <CardRestaurant key={item.id}>
         <CardActionArea
           onClick={() => goToRestaurantDetails(history, item.id)}
           key={item.id}
@@ -58,7 +60,7 @@ const FeedPage = () => {
             <Typography gutterBottom variant="h5" component="div">
               {item.name}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2">
               <ContainerInfo>
                 <span>{(item.deliveryTime) - 10} - {item.deliveryTime} min</span>
                 <span>
