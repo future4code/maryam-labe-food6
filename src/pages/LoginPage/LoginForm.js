@@ -16,7 +16,7 @@ import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { FormControl } from "@material-ui/core";
 
 const LoginForm = () => {
-  const [form, onChange, clear] = useForm({ email: "", password: "" });
+  const [form, onChange] = useForm({ email: "", password: "" });
   const history = useHistory();
   const [hidePassword, setHidePassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false)
@@ -27,7 +27,7 @@ const LoginForm = () => {
 
   const onSubmitForm = (event) => {
     event.preventDefault();
-    login(form, clear, history, setIsLoading);
+    login(form, history, setIsLoading);
   };
 
   return (

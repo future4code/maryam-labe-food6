@@ -1,6 +1,8 @@
 import { Button, CircularProgress, TextField } from "@material-ui/core";
-import React, { useContext, useState } from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { URL_Base } from "../../constants/urls";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import useForm from "../../hooks/useForm";
 import { updateProfile } from "../../services/user";
@@ -9,22 +11,46 @@ import { ContainerEditUser } from "./styled";
 const FormEditUser = () => {
 
     const history = useHistory()
+    const token = localStorage.getItem("token")
 
-    const { states, setters, requests } = useContext(GlobalContext)
-    const {profile} = requests
 
-    const [form, onChange, clear] = useForm({
-        name: `${profile.name}`,
-        email: `${profile.email}`,
-        cpf: `${profile.cpf}`,
-    })
+    const [form, onChange, clear, setForm] = useForm({
+        name: "",
+        email: "",
+        cpf: "",
+    }) 
+    
+    const getProfile = () => {
+        const headers = {
+            headers: {
+                auth: token
+            }
+        }
+
+        axios
+        .get(`${URL_Base}/profile`, headers)
+        .then((res) => {
+            setForm({
+                name: res.data.user.name,
+                email: res.data.user.email,
+                cpf: res.data.user.cpf,
+            })
+        })
+        .catch((err) => {
+            console.log(err.response.data.message)
+        })
+    }
+
+    useEffect(() => {
+        getProfile()
+    }, [])
 
     const [isLoading, setIsLoading] = useState(false)
-
+    
     
     const handleEditUser = (event) => {
         event.preventDefault()
-        updateProfile(form, history, setIsLoading)
+        updateProfile(form, history, setIsLoading, token)
     }
     
     

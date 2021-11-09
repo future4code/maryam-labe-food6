@@ -2,6 +2,7 @@ import React, {useState, useEffect, useContext} from "react";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import { GlobalContext } from "../../contexts/GlobalContext";
+import useGetProfile from "../../services/useGetProfile";
 import { getAddress, setUserAdress } from "../../services/user";
 import {ContainerCarrinho,
         NavBar,
@@ -17,9 +18,18 @@ import {ContainerCarrinho,
         BotaoConfirmar} from "./styled";
 
 const CartPage = () => {
-    const {requests} = useContext(GlobalContext)
-    const {restaurante, profile} = requests
-    const newProducts = restaurante.products
+    const {states, setters} = useContext(GlobalContext)
+    const {cart, profile, restaurant, cartProducts, actualRestaurant} = states
+    const {setCart, setCartProducts, setActualRestaurant} = setters
+    const [totalPrice , setTotalPrice] = useState(0)
+    const token = localStorage.getItem("token")
+    const { getProfile }= useGetProfile()
+    const newProducts = restaurant.products
+
+
+    useEffect(() => {
+        getProfile(token)
+    })
 
 
     const removeToCart = (id) => {
@@ -86,14 +96,14 @@ const CartPage = () => {
                 </EnderecoUsuario>
 
                 <EnderecoRestaurante>
-                    <p>{restaurante.name}</p>
-                    <p>{restaurante.address}</p>
-                    <p>{restaurante.deliveryTime} min</p>
+                    <p>{restaurant.name}</p>
+                    <p>{restaurant.address}</p>
+                    <p>{restaurant.deliveryTime} min</p>
                 </EnderecoRestaurante>
 
                 {ContainerFoodCard}
 
-                <Frete>Frete R$ {restaurante.shipping},00</Frete>
+                <Frete>Frete R$ {restaurant.shipping},00</Frete>
 
                 <Subtotal>
                     <p>SUBTOTAL</p>

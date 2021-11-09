@@ -15,13 +15,13 @@ const AddressForm = () => {
     complement: "",
   });
   const [isLoading, setIsLoading] = useState(false)
-
+  const token = localStorage.getItem("token")
 
   const history = useHistory();
 
   const handleAddress = (ev) => {
     ev.preventDefault();
-    address(form, clear, history, setIsLoading);
+    address(form, clear, history, setIsLoading, token);
   };
 
   return (

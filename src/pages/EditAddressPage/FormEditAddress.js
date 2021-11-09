@@ -1,32 +1,57 @@
 import { Button, CircularProgress, FormControl, InputLabel, MenuItem, Select, TextField } from "@material-ui/core";
-import React, { useContext, useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { GlobalContext } from "../../contexts/GlobalContext";
+import { URL_Base } from "../../constants/urls";
 import useForm from "../../hooks/useForm";
-import { goToProfile } from "../../routes/coordinator";
-import { addressEdit, getAddress, updateProfile } from "../../services/user";
+import { updateAddress } from "../../services/user";
 import { ContainerEditAddress } from "./styled";
 
 const FormEditAddress = () => {
 
     const history = useHistory()
-    const {requests} = useContext(GlobalContext)
-    const {addressUser} = requests
+    const token = localStorage.getItem("token")
 
-    const [form, onChange, clear] = useForm({
-        street: `${addressUser.street}`,
-        number: `${addressUser.number}`,
-        neighbourhood: `${addressUser.neighbourhood}`,
-        city: `${addressUser.city}`,
-        state: `${addressUser.state}`,
-        complement: `${addressUser.complement}`,
+    const [form, onChange, clear, setForm] = useForm({
+        street: "",
+        number: "",
+        neighbourhood: "",
+        city: "",
+        state: "",
+        complement: ""
     })
     const [isLoading, setIsLoading] = useState(false)
 
+    const getAddress = () => {
+        const headers = {
+            headers: {
+                auth: token
+            }
+        }
+    
+        axios
+        .get(`${URL_Base}/profile/address`, headers )
+        .then((res) => {
+            setForm({
+                street: res.data.address.street,
+                number: res.data.address.number,
+                neighbourhood: res.data.address.neighbourhood,
+                city: res.data.address.city,
+                state: res.data.address.state,
+                complement: (res.data.address.complement ? res.data.address.complement : "")
+            })
+        }).catch((err) => {
+            console.log(err.response)
+        })
+    }
+
+    useEffect(() => {
+        getAddress()
+    }, [])
     
     const handleEditAddress = (event) => {
         event.preventDefault()
-        addressEdit(form, history, setIsLoading)
+        updateAddress(form, history, setIsLoading, token)
     }
 
     return (
