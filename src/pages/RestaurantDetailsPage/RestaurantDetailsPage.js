@@ -1,24 +1,26 @@
 import React, { useEffect, useState, useContext } from "react"
-import GlobalState from "../../contexts/GlobalState";
-import useRequestData from "../../hooks/useRequestData"
-import { URL_Base } from "../../constants/urls"
 import { useParams, useHistory } from "react-router-dom"
 import useProtectedPage from "../../hooks/useProtectedPage"
 import { RestaurantDetailsPageContainer, ProductCard, DivisorLine, CategoryTitle, AddToCartButton, ProductName, ProductPrice, ProductDescription, HeaderContainer, RestaurantInformation, RestaurantName, BodyContainer, RestaurantDetails } from './styled'
-import back from '../../assets/imgs/back.png'
 import { GlobalContext } from "../../contexts/GlobalContext";
-import { goToFeed } from "../../routes/coordinator";
 import Header from "../../components/Header/Header";
+import useGetDetailsRestaurant from "../../services/useGetDetailsRestaurant";
 
 
 const RestaurantDetailsPage = () => {
     useProtectedPage()
     const params = useParams()
     const { setters, states } = useContext(GlobalContext)
-    const history = useHistory()
-    const restaurant = useRequestData({}, `${URL_Base}/restaurants/${params.id}`, 'restaurant')
-    const { setCart, setEditProfile } = setters
-    const { cart, editProfile } = states
+    const { setCart, setCartProducts } = setters
+    const { cart, cartProducts } = states
+    const token = localStorage.getItem("token")
+    const { getDetailsRestaurant } = useGetDetailsRestaurant()
+    const {restaurant} = states
+
+    useEffect(() => {
+        getDetailsRestaurant(params, token)
+    }, [])
+
 
     //função para add ao carrinho
     const addToCart = (id) => {
