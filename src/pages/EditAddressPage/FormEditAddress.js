@@ -1,8 +1,6 @@
 import { Button, CircularProgress, FormControl, InputLabel, MenuItem, Select, TextField } from "@material-ui/core";
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { headers, URL_Base } from "../../constants/urls";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import useForm from "../../hooks/useForm";
 import { goToProfile } from "../../routes/coordinator";
@@ -12,40 +10,19 @@ import { ContainerEditAddress } from "./styled";
 const FormEditAddress = () => {
 
     const history = useHistory()
-    // const {requests} = useContext(GlobalContext)
-    // const {addressUser} = requests
+    const {requests} = useContext(GlobalContext)
+    const {addressUser} = requests
 
-    const [form, onChange, clear, setForm] = useForm({
-        street: "",
-        number: "",
-        neighbourhood: "",
-        city: "",
-        state: "",
-        complement: ""
+    const [form, onChange, clear] = useForm({
+        street: `${addressUser.street}`,
+        number: `${addressUser.number}`,
+        neighbourhood: `${addressUser.neighbourhood}`,
+        city: `${addressUser.city}`,
+        state: `${addressUser.state}`,
+        complement: `${addressUser.complement}`,
     })
     const [isLoading, setIsLoading] = useState(false)
 
-    useEffect(() => {
-        address()
-    }, [])
-
-    const address = () => {
-        axios
-        .get(`${URL_Base}/profile/address`, headers)
-        .then((res) => {
-            setForm({
-                street: res.data.address.street,
-                number: res.data.address.number,
-                neighbourhood: res.data.address.neighbourhood,
-                city: res.data.address.city,
-                state: res.data.address.state,
-                complement: res.data.address.complement
-            })
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-    }
     
     const handleEditAddress = (event) => {
         event.preventDefault()

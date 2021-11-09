@@ -12,7 +12,6 @@ const ProfilePage = () => {
     const {states, setters, requests} = useContext(GlobalContext)
     const history = useHistory()
     
-    //Talvez melhorar...
     const {profile} = requests
     const {setCart, setEditProfile} = setters
     setEditProfile(profile)

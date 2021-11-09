@@ -1,8 +1,6 @@
 import { Button, CircularProgress, TextField } from "@material-ui/core";
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { headers, URL_Base } from "../../constants/urls";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import useForm from "../../hooks/useForm";
 import { updateProfile } from "../../services/user";
@@ -12,33 +10,14 @@ const FormEditUser = () => {
 
     const history = useHistory()
 
-    // const { states, setters, requests } = useContext(GlobalContext)
-    // const {profile} = requests
+    const { states, setters, requests } = useContext(GlobalContext)
+    const {profile} = requests
 
-    const [form, onChange, clear, setForm] = useForm({
-        name: "",
-        email: "",
-        cpf: "",
+    const [form, onChange, clear] = useForm({
+        name: `${profile.name}`,
+        email: `${profile.email}`,
+        cpf: `${profile.cpf}`,
     })
-
-    useEffect(() => {
-        profile()
-    }, [])
-
-    const profile = () => {
-        axios
-        .get(`${URL_Base}/profile`, headers)
-        .then((res) => {
-            setForm({
-                name: res.data.user.name,
-                email: res.data.user.email,
-                cpf: res.data.user.cpf,
-            })
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-    }
 
     const [isLoading, setIsLoading] = useState(false)
 
