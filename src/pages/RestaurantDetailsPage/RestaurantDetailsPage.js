@@ -5,14 +5,16 @@ import { RestaurantDetailsPageContainer, ProductCard, DivisorLine, CategoryTitle
 import { GlobalContext } from "../../contexts/GlobalContext";
 import Header from "../../components/Header/Header";
 import useGetDetailsRestaurant from "../../services/useGetDetailsRestaurant";
+import { Button } from "@material-ui/core";
+import ShowModal from "../../components/Modal/Modal"
 
 
 const RestaurantDetailsPage = () => {
     useProtectedPage()
     const params = useParams()
     const { setters, states } = useContext(GlobalContext)
-    const { setCart, setCartProducts } = setters
-    const { cart, cartProducts } = states
+    const { setCart, setCartProducts, setActualRestaurant } = setters
+    const { cart, cartProducts, actualRestaurant } = states
     const token = localStorage.getItem("token")
     const { getDetailsRestaurant } = useGetDetailsRestaurant()
     const {restaurant} = states
@@ -22,26 +24,41 @@ const RestaurantDetailsPage = () => {
     }, [])
 
 
-    //função para add ao carrinho
-    const addToCart = (id) => {
-        const newProducts = cart && cart.products && cart.products.map(product => {
-            if (product.id === id) {
-                const newQuantity = product.quantity + 1
-                const infosProduct = {
-                    ...product, quantity: newQuantity
-                }
-                console.log('add sendo q ja tinha:', product.id)
-                return infosProduct
-
-            } else {
-                console.log('add um prod novo:', product.id)
-                return product
-            }
+    const addToCart = (id, quantity) => {
+        const spreadCart = cart
+        spreadCart.products.push({
+            id: id,
+            quantity: quantity
         })
-        const newCart = { ...cart, products: newProducts }
-        setters.setCart(newCart)
-        console.log(cart)
+        setCart(spreadCart)
     }
+
+    const removeFromCart = (id) => {
+        const spreadCart = cart
+        const filteredSpreadCart = spreadCart.products && spreadCart.products.filter((product) => 
+            product.id !== id
+        );
+        setCart({ products: filteredSpreadCart })
+
+        const spreadCartProducts = cartProducts;
+        const filteredSpreadCartProducts = spreadCartProducts.filter((product) => 
+            product.id !== id
+        );
+        setCartProducts(filteredSpreadCartProducts);
+    }
+
+    const [open, setOpen] = useState(false)
+    const [product, setProduct] = useState(false)
+    
+    const handleOpen = () => {
+        setOpen(true)
+    }
+
+    const handleClose = () => {
+        setOpen(false)
+    };
+
+    const [quantity, setQuantity] = useState('')
 
     // array de categorias
     const categories = restaurant && restaurant.products && restaurant.products.map((product) => {
@@ -64,6 +81,9 @@ const RestaurantDetailsPage = () => {
                         return product.category === item
                     })
                     .map(product => {
+                        const findId = cart?.products.filter((prod) => {
+                            prod.id === product.id
+                        })
                         return (
                             <ProductCard key={product.id}>
                                 <img src={product.photoUrl} />
@@ -72,7 +92,31 @@ const RestaurantDetailsPage = () => {
                                     <ProductDescription>{product.description}</ProductDescription>
                                     <ProductPrice>R$ {product.price.toFixed(2)}</ProductPrice>
                                 </div>
-                                <AddToCartButton onClick={() => addToCart(product.id)}>adicionar</AddToCartButton>
+                                {findId.length == 0 ? (
+                                    <AddToCartButton onClick={() => {
+                                        setProduct({
+                                            id: product.id,
+                                            photoUrl: product.photoUrl,
+                                            name: product.name,
+                                            description: product.description,
+                                            price: product.price,
+                                        })
+                                        handleOpen()
+                                    }}>Adicionar</AddToCartButton>)
+                                    :
+                                    (<AddToCartButton onClick={() => {
+                                        removeFromCart(product.id) 
+                                        if (cart.products.length == 1) {
+                                            setActualRestaurant({
+                                                id: '',
+                                                address: '',
+                                                deliveryTime: '',
+                                                shipping: '',
+                                            })
+                                        }}
+                                    }>Remover</AddToCartButton>)
+                                }
+                                {findId.length > 0 && <Button>{findId[0].quantity}</Button>}
                             </ProductCard>
                         )
                     })}</div>
@@ -85,6 +129,22 @@ const RestaurantDetailsPage = () => {
         <RestaurantDetailsPageContainer>
             <Header />
             <BodyContainer>
+                {restaurant && (
+                    <div>
+                        <ShowModal 
+                            open={open}
+                            setOpen={setOpen}
+                            handleOpen={handleOpen}
+                            handleClose={handleClose}
+                            quantity={quantity}
+                            setQuantity={setQuantity}
+                            product={product}
+                            addItemToCart={addToCart}
+                            restaurantId={params.id}
+                            data={restaurant}
+                        />
+                    </div>
+                )}
                 <RestaurantDetails>
                     <img src={restaurant.logoUrl}></img>
                     <RestaurantName>{restaurant.name}</RestaurantName>
