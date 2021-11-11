@@ -129,6 +129,20 @@ export const AddToCartButton = styled.button`
     left: 239px;
 `
 
+export const RemoveToCartButton = styled.button`
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 0.75rem;
+    width: 5.625rem;
+    height: 1.938rem;
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border: solid 1px black;
+    position: relative;
+    top: -31px;
+    left: 239px;
+    color: #e8222e;
+`
+
 export const CategoryTitle = styled.p`
     width: 20.5rem;
     height: 1.125rem;
@@ -144,4 +158,15 @@ export const DivisorLine = styled.hr`
     height: 1px;
     margin-left: 0px;
     margin-bottom: 15px;
+`
+
+export const Quantity = styled.button `
+    position: absolute;
+    background-color: whitesmoke;
+    border: 1px solid #e8222e;
+    color: #e8222e;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 0 0.5rem 0 0.5rem;
+    right: 29px;
 `

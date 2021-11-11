@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react"
 import { useParams, useHistory } from "react-router-dom"
 import useProtectedPage from "../../hooks/useProtectedPage"
-import { RestaurantDetailsPageContainer, ProductCard, DivisorLine, CategoryTitle, AddToCartButton, ProductName, ProductPrice, ProductDescription, HeaderContainer, RestaurantInformation, RestaurantName, BodyContainer, RestaurantDetails } from './styled'
+import { RestaurantDetailsPageContainer, ProductCard, DivisorLine, CategoryTitle, AddToCartButton, ProductName, ProductPrice, ProductDescription, HeaderContainer, RestaurantInformation, RestaurantName, BodyContainer, RestaurantDetails, RemoveToCartButton, Quantity } from './styled'
 import { GlobalContext } from "../../contexts/GlobalContext";
 import Header from "../../components/Header/Header";
 import useGetDetailsRestaurant from "../../services/useGetDetailsRestaurant";
@@ -81,9 +81,9 @@ const RestaurantDetailsPage = () => {
                         return product.category === item
                     })
                     .map(product => {
-                        const findId = cart?.products.filter((prod) => {
+                        const findId = cart?.products.filter((prod) => 
                             prod.id === product.id
-                        })
+                        )
                         return (
                             <ProductCard key={product.id}>
                                 <img src={product.photoUrl} />
@@ -104,7 +104,7 @@ const RestaurantDetailsPage = () => {
                                         handleOpen()
                                     }}>Adicionar</AddToCartButton>)
                                     :
-                                    (<AddToCartButton onClick={() => {
+                                    (<RemoveToCartButton onClick={() => {
                                         removeFromCart(product.id) 
                                         if (cart.products.length == 1) {
                                             setActualRestaurant({
@@ -114,9 +114,9 @@ const RestaurantDetailsPage = () => {
                                                 shipping: '',
                                             })
                                         }}
-                                    }>Remover</AddToCartButton>)
+                                    }>Remover</RemoveToCartButton>)
                                 }
-                                {findId.length > 0 && <Button>{findId[0].quantity}</Button>}
+                                {findId.length > 0 && <Quantity>{findId[0].quantity}</Quantity>}
                             </ProductCard>
                         )
                     })}</div>
@@ -130,7 +130,7 @@ const RestaurantDetailsPage = () => {
             <Header />
             <BodyContainer>
                 {restaurant && (
-                    <div>
+                    <>
                         <ShowModal 
                             open={open}
                             setOpen={setOpen}
@@ -143,19 +143,19 @@ const RestaurantDetailsPage = () => {
                             restaurantId={params.id}
                             data={restaurant}
                         />
-                    </div>
+                        <RestaurantDetails>
+                            <img src={restaurant.logoUrl}></img>
+                            <RestaurantName>{restaurant.name}</RestaurantName>
+                            <RestaurantInformation>{restaurant.category}</RestaurantInformation>
+                            <div>
+                                <RestaurantInformation>{(restaurant.deliveryTime) - 10} - {restaurant.deliveryTime} min</RestaurantInformation>
+                                <RestaurantInformation>Frete R$ {restaurant && restaurant.shipping && restaurant.shipping.toFixed(2)}</RestaurantInformation>
+                            </div>
+                            <RestaurantInformation>{restaurant.address}</RestaurantInformation>
+                        </RestaurantDetails>
+                        {renderCategories}
+                    </>
                 )}
-                <RestaurantDetails>
-                    <img src={restaurant.logoUrl}></img>
-                    <RestaurantName>{restaurant.name}</RestaurantName>
-                    <RestaurantInformation>{restaurant.category}</RestaurantInformation>
-                    <div>
-                        <RestaurantInformation>{(restaurant.deliveryTime) - 10} - {restaurant.deliveryTime} min</RestaurantInformation>
-                        <RestaurantInformation>Frete R$ {restaurant && restaurant.shipping && restaurant.shipping.toFixed(2)}</RestaurantInformation>
-                    </div>
-                    <RestaurantInformation>{restaurant.address}</RestaurantInformation>
-                </RestaurantDetails>
-                {renderCategories}
             </BodyContainer>
         </RestaurantDetailsPageContainer>
     )

@@ -1,6 +1,7 @@
 import { Button, FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 import React, { useContext } from "react";
 import { GlobalContext } from "../../contexts/GlobalContext";
+import { ModalBody, ModalContainer  } from "./styled";
 
 const ShowModal = ({
     open,
@@ -43,9 +44,9 @@ const ShowModal = ({
     }
 
     const body = (
-        <div>
+        <ModalBody>
             <p>Selecione a quantidade desejada</p>
-            <FormControl>
+            <FormControl variant={"filled"}>
                 <InputLabel>Quantidade desejada</InputLabel>
                 <Select
                     value={quantity}
@@ -58,21 +59,21 @@ const ShowModal = ({
                     <MenuItem value={3}>3</MenuItem>
                     <MenuItem value={4}>4</MenuItem>
                     <MenuItem value={5}>5</MenuItem>
-                    <MenuItem value={6}>5</MenuItem>
-                    <MenuItem value={7}>5</MenuItem>
+                    <MenuItem value={6}>6</MenuItem>
+                    <MenuItem value={7}>7</MenuItem>
                 </Select>
             </FormControl>
             <Button onClick={placeOrder}>
                 Adicionar ao carrinho
             </Button>
-        </div>
+        </ModalBody>
     )
 
     return (
         <div>
-            <div open={open} onClose={handleClose}>
+            <ModalContainer open={open} onClose={handleClose}>
                 {body}
-            </div>
+            </ModalContainer>
         </div>
     )
 }
