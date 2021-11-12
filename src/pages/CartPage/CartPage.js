@@ -1,21 +1,30 @@
+import { Button } from "@material-ui/core";
 import React, {useState, useEffect, useContext} from "react";
+import { useHistory, useParams } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import { GlobalContext } from "../../contexts/GlobalContext";
+import { goToFeed } from "../../routes/coordinator";
 import useGetProfile from "../../services/useGetProfile";
+import usePlaceOrder from "../../services/usePlaceOrder"
 import { getAddress, setUserAdress } from "../../services/user";
 import {ContainerCarrinho,
         NavBar,
         EnderecoUsuario,
         EnderecoRestaurante,
-        CardComidas,
-        CardInfos,
-        Quantidade,
-        BotaoRemover,
         Frete,
         Subtotal,
         ContainerPagamento,
-        BotaoConfirmar} from "./styled";
+        BotaoConfirmar,
+        ProductCard,
+        ProductName,
+        ProductDescription,
+        ProductPrice,
+        RemoveToCartButton,
+        Quantity,
+        Total,
+        ButtonContainer,
+        MainContainer} from "./styled";
 
 const CartPage = () => {
     const {states, setters} = useContext(GlobalContext)
@@ -24,100 +33,139 @@ const CartPage = () => {
     const [totalPrice , setTotalPrice] = useState(0)
     const token = localStorage.getItem("token")
     const { getProfile }= useGetProfile()
-    const newProducts = restaurant.products
+    // const newProducts = restaurant.products
+    const [priceTotal, setPriceTotal] = useState(0)
+    const params = useParams()
+    const { data, placeOrder } = usePlaceOrder()
+    const history = useHistory()
 
 
     useEffect(() => {
         getProfile(token)
+        totalCart()
     })
 
-
-    const removeToCart = (id) => {
-        const newCart = {...newProducts, products: listProducts}
-        newProducts.setCart(newCart)
-
-        const listProducts = newProducts.map(product => {
-            if (product.id === id) {
-                const newQuantity = product.quantity - 1
-                const infosProduct = {
-                    ...product, quantity: newQuantity
-                }
-                return infosProduct
-            }
-        })}
-
-    const subtotalCart = () => {
-        let subtotalPrice = 0
-
-        if ((newProducts).length !== 0) {
-            newProducts.forEach(
-            (product) => {
-              subtotalPrice += product.price * product.quantity
-            }
-        )
-            return newProducts.shipping + subtotalPrice
+    const dataPlaceOrder = () => {
+        if (cart.paymentMethod !== "" && cart.products.length > 0 && actualRestaurant.id !== "") {
+            placeOrder(params.id, token, cart)
+            setCartProducts([])
+            setActualRestaurant({
+                id: '',
+                address: '',
+                deliveryTime: '',
+                shipping: '',
+                name: '',
+            })
+            setCart({
+                products: [],
+                paymentMethod: ""
+            })
+            setTimeout(() => goToFeed(history), 3000)
+        } else if (cart.products.length == 0 && cart.paymentMethod !== "") {
+            alert("Adicione um produto ao carrinho")
+        } else if (cart.paymentMethod === "" && cart.products.length > 0) {
+            alert("Por favor, selecione um método de pagamento para prosseguir")
+        } else {
+            alert("Para prosseguir com a compra, adicione produtos ao carrinho e selecione um método de pagamento")
         }
-        return 0
     }
 
+    const removeFromCart = (id) => {
+        const spreadCart = cart
+        const filteredSpreadCart = spreadCart.products && spreadCart.products.filter((product) => 
+            product.id !== id
+        );
+        setCart({...cart, products: filteredSpreadCart })
 
-    const ContainerFoodCard = newProducts && newProducts.map((product) => {
-        return(
-            <CardComidas key={product.id}>
-                <img src={product.photoUrl} alt="fot de lanche"/>
-                
-                <div>
-                    <CardInfos>
-                        <h3>{product.name}</h3>
-                        <p>{product.description}</p>
-                        <p>R$ {product.price}</p>
-                    </CardInfos>
-
-                    {/* <Quantidade>
-                        <button>{product.quantity}</button>
-                    </Quantidade>
-                    
-                    <BotaoRemover>
-                        <button onClick={() => removeItem(restaurante.products.id)}>-</button>
-                    </BotaoRemover> */}
-                </div>
-            
-            </CardComidas>
+        const spreadCartProducts = cartProducts;
+        const filteredSpreadCartProducts = spreadCartProducts.filter((product) => 
+            product.id !== id
         )
+        setCartProducts(filteredSpreadCartProducts);
+    }
+
+    const totalCart = () => {
+        let totalPrice = 0
+        let item
+        for (const product of cartProducts) {
+            item = cart.products.find((item) => 
+                item.id === product.id
+            )
+            if (item && Object.keys(item).length > 0) {
+                totalPrice += product.price * item.quantity
+            }
+        }
+        setTotalPrice(totalPrice)
+    }
+
+    const ContainerFoodCard = cartProducts && cartProducts.map((product) => {
+        const findId = cart?.products.filter((prod) => 
+        prod.id === product.id
+        )
+    return (
+        <ProductCard key={product.id}>
+            <img src={product.photoUrl} />
+            <div>
+                <ProductName>{product.name}</ProductName>
+                <ProductDescription>{product.description}</ProductDescription>
+                <ProductPrice>R$ {product.price.toFixed(2)}</ProductPrice>
+            </div>
+                <RemoveToCartButton onClick={() => {
+                    removeFromCart(product.id) 
+                    if (cart.products.length == 1) {
+                        setActualRestaurant({
+                            id: '',
+                            address: '',
+                            deliveryTime: '',
+                            shipping: '',
+                        })
+                    }}
+                }>Remover</RemoveToCartButton>
+            {findId.length > 0 && <Quantity>{findId[0].quantity}</Quantity>}
+        </ProductCard>
+    )
     })
     
     return (
         <div>
             <Header />
-            <div>
+            <MainContainer>
                 <EnderecoUsuario>
                     <p>Endereço de entrega</p>
                     <p>{profile.address}</p>
                 </EnderecoUsuario>
 
                 <EnderecoRestaurante>
-                    <p>{restaurant.name}</p>
-                    <p>{restaurant.address}</p>
-                    <p>{restaurant.deliveryTime} min</p>
+                    <p>{actualRestaurant.name}</p>
+                    <p>{actualRestaurant.address}</p>
+                    <p>{actualRestaurant.deliveryTime} min</p>
                 </EnderecoRestaurante>
 
                 {ContainerFoodCard}
 
-                <Frete>Frete R$ {restaurant.shipping},00</Frete>
+                <Frete>Frete R$ {actualRestaurant.shipping},00</Frete>
 
                 <Subtotal>
                     <p>SUBTOTAL</p>
-                    <p>{subtotalCart}</p>
+                    <p>R$ {totalPrice.toFixed(2).replace(".", ",")}</p>
                 </Subtotal>
+                <Total>
+                    <p>TOTAL</p>
+                    {totalPrice && actualRestaurant.shipping ? (<p>R$ {(totalPrice + actualRestaurant.shipping).toFixed(2).replace(".", ",")}</p>)
+                    :
+                    (<p>R$ 0,00</p>)}
+                    
+                </Total>
 
                 <ContainerPagamento>
                     <p>Forma de Pagamento</p>
                 </ContainerPagamento>
-
-                <BotaoConfirmar>
-                    <p>Confirmar</p>
-                </BotaoConfirmar>
-            </div>
+                <ButtonContainer>
+                    <BotaoConfirmar onClick={() => dataPlaceOrder()} variant={"contained"} color={"primary"}>
+                        <p>Confirmar</p>
+                    </BotaoConfirmar>
+                </ButtonContainer>
+            </MainContainer>
                 <Footer />
         </div>
     )
