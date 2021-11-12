@@ -111,3 +111,19 @@ export const updateAddress = (body, history, setIsLoading, token) => {
     console.log(err.response)
   })
 }
+
+
+export const ordersHistory = (set, token) => {
+  axios
+    .get(`${URL_Base}/orders/history`, {
+      headers: {
+        auth: token,
+      },
+    })
+    .then((response) => {
+      set(response.data.orders);
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+};
