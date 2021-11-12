@@ -16,6 +16,8 @@ import useGetRestaurants from "../../services/useGetRestaurants";
 import search from '../../assets/imgs/search.png'
 import useForm from '../../hooks/useForm'
 import { RestaurantCard } from "../../components/RestaurantCard/RestaurantCard";
+// import useActiveOrder from "../../services/useActiveOrder";
+// import ActiveOrderCard from "../../components/ActiveOrderCard/ActiveOrderCard";
 
 
 const FeedPage = () => {
@@ -28,6 +30,7 @@ const FeedPage = () => {
   const { restaurants } = states
   const { getRestaurants } = useGetRestaurants()
   const [restaurantCategoryFilter, setRestaurantCategoryFilter] = useState('Todos')
+  // const { getActiveOrder, activeOrder } = useActiveOrder()
 
   const RestaurantsSearch = restaurants?.filter((restaurant) =>
     restaurant.name.startsWith(form.search)
@@ -49,6 +52,7 @@ const FeedPage = () => {
   
   useEffect(() => {
     getRestaurants(token)
+    // getActiveOrder(token)
   })
 
 
@@ -56,6 +60,8 @@ const FeedPage = () => {
     <div>
       <Header />
       <Main>
+      {/* {activeOrder && Object.keys(activeOrder).length > 0 && 
+        (<ActiveOrderCard  data={activeOrder}/>)} */}
         <SearchBar>
           <img src={search} alt='Pesquisar' />
           <form autoComplete='off'>

@@ -129,7 +129,6 @@ const CartPage = () => {
     )
     })
 
-    
     return (
         <div>
             <Header />
