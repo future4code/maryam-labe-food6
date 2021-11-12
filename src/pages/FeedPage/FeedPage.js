@@ -1,17 +1,21 @@
 import React, { useState, useEffect, useContext } from "react";
 import useProtectedPage from "../../hooks/useProtectedPage";
-import { CardMedias, CardRestaurant, ContainerInfo, Main } from "./styled";
+import {
+  Main,
+  SearchBar,
+  InputSearch,
+  Carousel,
+  Categories
+} from "./styled";
 import { goToRestaurantDetails } from "../../routes/coordinator";
 import { useHistory } from "react-router-dom";
 import Header from "../../components/Header/Header";
-import {
-  CardActionArea,
-  CardContent,
-  Typography,
-} from "@material-ui/core";
 import Footer from "../../components/Footer/Footer";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import useGetRestaurants from "../../services/useGetRestaurants";
+import search from '../../assets/imgs/search.png'
+import useForm from '../../hooks/useForm'
+import { RestaurantCard } from "../../components/RestaurantCard/RestaurantCard";
 
 
 const FeedPage = () => {
@@ -19,70 +23,105 @@ const FeedPage = () => {
 
   const history = useHistory();
   const token = localStorage.getItem("token")
-  const {states} = useContext(GlobalContext)
-  const {restaurants} = states
+  const [form, handleInputChange, clear] = useForm({ search: '' })
+  const { states } = useContext(GlobalContext)
+  const { restaurants } = states
   const { getRestaurants } = useGetRestaurants()
+  const [restaurantCategoryFilter, setRestaurantCategoryFilter] = useState('Todos')
 
+  const RestaurantsSearch = restaurants?.filter((restaurant) =>
+    restaurant.name.startsWith(form.search)
+  )
+
+  const filteredRestaurants = (category) => {
+    return restaurants?.filter((restaurant) => restaurant.category === category)
+  }
+
+
+  const categories = restaurants?.map((restaurant) => {
+    return (restaurant.category)
+  })
+  const filteredCategories = categories?.filter((item, index) => {
+    return categories.indexOf(item) === index
+  })
+  filteredCategories.unshift('Todos')
+
+  
   useEffect(() => {
     getRestaurants(token)
   })
 
-  // const restaurants = useRequestData([], `${URL_Base}/restaurants`, 'restaurants', token)
-
-  // useEffect(() => {
-  //   getRestaurants();
-  // }, []);
-
-  // const getRestaurants = () => {
-  //   axios
-  //     .get(url, headers)
-  //     .then((res) => {
-  //       setRestaurants(res.data.restaurants);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.message);
-  //     });
-  // };
-  const listRestaurants = restaurants.map((item) => {
-    return (
-      <CardRestaurant key={item.id}>
-        <CardActionArea
-          onClick={() => goToRestaurantDetails(history, item.id)}
-          key={item.id}
-        >
-          <CardMedias
-            component="img"
-            height="140"
-            image={item.logoUrl}
-            alt="Logo restaurant"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {item.name}
-            </Typography>
-            <Typography variant="body2">
-              <ContainerInfo>
-                <span>{(item.deliveryTime) - 10} - {item.deliveryTime} min</span>
-                <span>
-                  {item.shipping ? (
-                    <span>Frete R$ {item.shipping},00</span>
-                  ) : (
-                    <span>Frete grátis</span>
-                  )}
-                </span>
-              </ContainerInfo>
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </CardRestaurant>
-    );
-  });
 
   return (
     <div>
       <Header />
       <Main>
-        {listRestaurants}
+        <SearchBar>
+          <img src={search} alt='Pesquisar' />
+          <form autoComplete='off'>
+            <InputSearch
+              type='text'
+              placeholder='Restaurante'
+              autoFocus
+              value={form.search}
+              onChange={handleInputChange}
+              name={'search'}
+            />
+          </form>
+        </SearchBar>
+
+        {restaurants && (
+          <>
+            <Carousel>
+              {filteredCategories?.map((category) => (
+                <Categories
+                  key={category}
+                  onClick={() => setRestaurantCategoryFilter(category)}
+                  currentCategory={restaurantCategoryFilter}
+                  categoryName={category}
+                >
+                  {category}
+                </Categories>
+              ))}
+            </Carousel>
+
+            {restaurantCategoryFilter === 'Todos' &&
+              RestaurantsSearch?.map((restaurant) => (
+                <RestaurantCard
+                  onClick={() => goToRestaurantDetails(history, restaurant.id)}
+                  key={restaurant.id}
+                  name={restaurant.name}
+                  deliveryTime={restaurant.deliveryTime}
+                  shipping={restaurant.shipping}
+                  logoUrl={restaurant.logoUrl}
+                />
+              ))}
+
+            {form?.search?.length == 0 &&
+              filteredRestaurants(restaurantCategoryFilter).map(
+                (restaurant) => (
+                  <RestaurantCard
+                    onClick={() => goToRestaurantDetails(history, restaurant.id)}
+                    key={restaurant.id}
+                    name={restaurant.name}
+                    deliveryTime={restaurant.deliveryTime}
+                    shipping={restaurant.shipping}
+                    logoUrl={restaurant.logoUrl}
+                  />
+                )
+              )}
+
+            {RestaurantsSearch?.length == 0 &&
+              form?.search?.length > 0 &&
+              filteredRestaurants(restaurantCategoryFilter).length === 0 && (
+                <p>Não encontramos </p>
+              )}
+
+            {restaurantCategoryFilter !== 'Todos' && form.search.length > 0 && (
+              <p>Faça uma busca na categoria "Todos".</p>
+            )}
+          </>
+        )}
       </Main>
       <Footer />
     </div>
