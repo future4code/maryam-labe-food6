@@ -16,7 +16,7 @@ export const HeaderContainer = styled.div `
         letter-spacing: -0.39px;
         display: flex;
         width: 57vw;
-        font-weight: 450;
+        font-size: 16px;
     }
 `
 
