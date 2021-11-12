@@ -5,7 +5,7 @@ import { URL_Base } from "../constants/urls";
 const usePlaceOrder = () => {
     const [data, setData] = useState("")
 
-    const placeOrder = (params, token, body) => {
+    const placeOrder = (actualRestaurantId, token, body) => {
         const headers = {
             headers: {
                 auth: token
@@ -13,14 +13,13 @@ const usePlaceOrder = () => {
         }
 
         axios
-        .post(`${URL_Base}/restaurants/${params.id}/order`, body, headers)
+        .post(`${URL_Base}/restaurants/${actualRestaurantId}/order`, body, headers)
         .then((res) => {
-            console.log(res)
             setData(res.data)
             alert("Pedido realizado com sucesso!")
         })
         .catch((err) => {
-            console.log(err.response)
+            alert(err.response.data.message)
         })
     }
 

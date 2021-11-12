@@ -27,7 +27,9 @@ import {ContainerCarrinho,
         ContainerPagamento,
         Linha,
         InfosPagamento,
-        OpcoesPagamento} from "./styled";
+        OpcoesPagamento,
+        EmptyCart} from "./styled";
+import iconEmptyCart from "../../assets/imgs/iconEmptyCart.png"
 
 const CartPage = () => {
     const {states, setters} = useContext(GlobalContext)
@@ -37,11 +39,8 @@ const CartPage = () => {
     const token = localStorage.getItem("token")
     const { getProfile }= useGetProfile()
     // const newProducts = restaurant.products
-    const [priceTotal, setPriceTotal] = useState(0)
-    const params = useParams()
     const { data, placeOrder } = usePlaceOrder()
     const history = useHistory()
-    console.log(params)
 
     useEffect(() => {
         getProfile(token)
@@ -51,7 +50,7 @@ const CartPage = () => {
     const dataPlaceOrder = () => {
         if (cart.paymentMethod !== "" && cart.products.length > 0 && actualRestaurant.id !== "") {
             console.log(cart)
-            placeOrder(params, token, cart)
+            placeOrder(actualRestaurant.id, token, cart)
             setCartProducts([])
             setActualRestaurant({
                 id: '',
@@ -134,76 +133,82 @@ const CartPage = () => {
     return (
         <div>
             <Header />
-            <MainContainer>
-                <EnderecoUsuario>
-                    <p>Endereço de entrega</p>
-                    <p>{profile.address}</p>
-                </EnderecoUsuario>
+                {actualRestaurant.id ? 
+                (<MainContainer>
+                    <EnderecoUsuario>
+                        <p>Endereço de entrega</p>
+                        <p>{profile.address}</p>
+                    </EnderecoUsuario>
 
-                <EnderecoRestaurante>
-                    <p>{actualRestaurant.name}</p>
-                    <p>{actualRestaurant.address}</p>
-                    <p>{actualRestaurant.deliveryTime} min</p>
-                </EnderecoRestaurante>
+                    <EnderecoRestaurante>
+                        <p>{actualRestaurant.name}</p>
+                        <p>{actualRestaurant.address}</p>
+                        <p>{actualRestaurant.deliveryTime} min</p>
+                    </EnderecoRestaurante>
 
-                {ContainerFoodCard}
+                    {ContainerFoodCard}
 
-                <Frete>Frete R$ {actualRestaurant.shipping},00</Frete>
+                    <Frete>Frete R$ {actualRestaurant.shipping},00</Frete>
 
-                <Subtotal>
-                    <p>SUBTOTAL</p>
-                    <p>R$ {totalPrice.toFixed(2).replace(".", ",")}</p>
-                </Subtotal>
-                <Total>
-                    <p>TOTAL</p>
-                    {totalPrice && actualRestaurant.shipping ? (<p>R$ {(totalPrice + actualRestaurant.shipping).toFixed(2).replace(".", ",")}</p>)
-                    :
-                    (<p>R$ 0,00</p>)}
+                    <Subtotal>
+                        <p>SUBTOTAL</p>
+                        <p>R$ {totalPrice.toFixed(2).replace(".", ",")}</p>
+                    </Subtotal>
+                    <Total>
+                        <p>TOTAL</p>
+                        {totalPrice && actualRestaurant.shipping ? (<p>R$ {(totalPrice + actualRestaurant.shipping).toFixed(2).replace(".", ",")}</p>)
+                        :
+                        (<p>R$ 0,00</p>)}
+                        
+                    </Total>
+
+                    <ContainerPagamento>
+                    <InfosPagamento>
                     
-                </Total>
+                    <h4>Forma de pagamento</h4>
+                    <form onSubmit={(ev) => ev.preventDefault()}>
+                    <Linha />
+                        <OpcoesPagamento>
+                            <input
+                            type='radio'
+                            id='dinheiro'
+                            name='paymentmethod'
+                            onChange={() =>
+                            setCart({ ...cart, paymentMethod: 'money' })
+                            }
+                            />
+                            <label htmlFor='dinheiro'>Dinheiro</label>
+                        </OpcoesPagamento>
+                        
+                        <OpcoesPagamento>
+                            <input
+                            type='radio'
+                            id='cartao'
+                            name='paymentmethod'
+                            onChange={() =>
+                            setCart({ ...cart, paymentMethod: 'creditcard' })
+                            }
+                            />
+                            <label htmlFor='cartao'>Cartão de crédito</label>
+                        </OpcoesPagamento>
 
-                <ContainerPagamento>
-                <InfosPagamento>
+                        <ButtonContainer>
+                            <BotaoConfirmar onClick={() => dataPlaceOrder()} variant={"contained"} color={"primary"}>
+                                <p>Confirmar</p>
+                            </BotaoConfirmar>
+                        </ButtonContainer>
+                    </form>
+
+                    </InfosPagamento>
+                    </ContainerPagamento>
                 
-                <h4>Forma de pagamento</h4>
-                <form onSubmit={(ev) => ev.preventDefault()}>
-                <Linha />
-                    <OpcoesPagamento>
-                        <input
-                        type='radio'
-                        id='dinheiro'
-                        name='paymentmethod'
-                        onChange={() =>
-                        setCart({ ...cart, paymentMethod: 'money' })
-                        }
-                        />
-                        <label htmlFor='dinheiro'>Dinheiro</label>
-                    </OpcoesPagamento>
-                    
-                    <OpcoesPagamento>
-                        <input
-                        type='radio'
-                        id='cartao'
-                        name='paymentmethod'
-                        onChange={() =>
-                        setCart({ ...cart, paymentMethod: 'creditcard' })
-                        }
-                        />
-                        <label htmlFor='cartao'>Cartão de crédito</label>
-                    </OpcoesPagamento>
-
-                    <ButtonContainer>
-                        <BotaoConfirmar onClick={() => dataPlaceOrder()} variant={"contained"} color={"primary"}>
-                            <p>Confirmar</p>
-                        </BotaoConfirmar>
-                    </ButtonContainer>
-                </form>
-
-                </InfosPagamento>
-                </ContainerPagamento>
-            
-            </MainContainer>
-                <Footer />
+                </MainContainer>)
+                :
+                (<EmptyCart>
+                    <img src={iconEmptyCart} alt={"Carrinho vazio"}/>
+                    <p>Seu carrinho está vazio!</p>
+                </EmptyCart>)}
+            <Footer />
         </div>
     )
 }

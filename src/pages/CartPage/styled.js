@@ -257,6 +257,7 @@ export const Total = styled.div`
 export const ButtonContainer = styled.div `
     display: flex;
     justify-content: center;
+    margin-top: 25px;
 `
 
 export const BotaoConfirmar = styled(Button)`
@@ -299,4 +300,27 @@ export const InfosPagamento = styled.div`
 
 export const OpcoesPagamento = styled.div`
     margin-bottom: 0.5rem;
+`
+
+export const EmptyCart = styled.div `
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        width: 50%;
+    }
+
+    p {
+        opacity: 0.89;
+        font-family: Roboto;
+        font-size: 1.3rem;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.39px;
+    }
 `
