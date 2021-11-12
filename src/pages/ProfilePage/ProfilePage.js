@@ -49,7 +49,7 @@ const ProfilePage = () => {
                 <OrderHistoryCard key={index}>
                     <p>{order.restaurantName}</p>
                     <p>{convertDate(order.createdAt)}</p>
-                    <p>SUBTOTAL R${order.totalPrice.toFixed(2).replace(/\./g, ',')}</p>
+                    <p>SUBTOTAL R$ {order.totalPrice.toFixed(2).replace(/\./g, ',')}</p>
                 </OrderHistoryCard>
             ))
         ) : (
