@@ -123,7 +123,8 @@ export const AddToCartButton = styled.button`
     height: 1.938rem;
     border-top-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    border: solid 1px black;
+    color: #e8222e;
+    background-color: white;
     position: relative;
     top: -31px;
     left: 239px;
@@ -136,11 +137,11 @@ export const RemoveToCartButton = styled.button`
     height: 1.938rem;
     border-top-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    border: solid 1px black;
     position: relative;
     top: -31px;
     left: 239px;
-    color: #e8222e;
+    color: white;
+    background-color: #e8222e;
 `
 
 export const CategoryTitle = styled.p`
@@ -164,7 +165,8 @@ export const Quantity = styled.button `
     position: absolute;
     background-color: whitesmoke;
     border: 1px solid #e8222e;
-    color: #e8222e;
+    background-color: #e8222e;
+    color: white;
     height: 2rem;
     width: 2rem;
     border-radius: 0 0.5rem 0 0.5rem;

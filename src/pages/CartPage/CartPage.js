@@ -14,7 +14,6 @@ import {ContainerCarrinho,
         EnderecoRestaurante,
         Frete,
         Subtotal,
-        ContainerPagamento,
         BotaoConfirmar,
         ProductCard,
         ProductName,
@@ -24,7 +23,11 @@ import {ContainerCarrinho,
         Quantity,
         Total,
         ButtonContainer,
-        MainContainer} from "./styled";
+        MainContainer,
+        ContainerPagamento,
+        Linha,
+        InfosPagamento,
+        OpcoesPagamento} from "./styled";
 
 const CartPage = () => {
     const {states, setters} = useContext(GlobalContext)
@@ -38,7 +41,7 @@ const CartPage = () => {
     const params = useParams()
     const { data, placeOrder } = usePlaceOrder()
     const history = useHistory()
-
+    console.log(params)
 
     useEffect(() => {
         getProfile(token)
@@ -47,7 +50,8 @@ const CartPage = () => {
 
     const dataPlaceOrder = () => {
         if (cart.paymentMethod !== "" && cart.products.length > 0 && actualRestaurant.id !== "") {
-            placeOrder(params.id, token, cart)
+            console.log(cart)
+            placeOrder(params, token, cart)
             setCartProducts([])
             setActualRestaurant({
                 id: '',
@@ -125,6 +129,7 @@ const CartPage = () => {
         </ProductCard>
     )
     })
+
     
     return (
         <div>
@@ -158,13 +163,45 @@ const CartPage = () => {
                 </Total>
 
                 <ContainerPagamento>
-                    <p>Forma de Pagamento</p>
+                <InfosPagamento>
+                
+                <h4>Forma de pagamento</h4>
+                <form onSubmit={(ev) => ev.preventDefault()}>
+                <Linha />
+                    <OpcoesPagamento>
+                        <input
+                        type='radio'
+                        id='dinheiro'
+                        name='paymentmethod'
+                        onChange={() =>
+                        setCart({ ...cart, paymentMethod: 'money' })
+                        }
+                        />
+                        <label htmlFor='dinheiro'>Dinheiro</label>
+                    </OpcoesPagamento>
+                    
+                    <OpcoesPagamento>
+                        <input
+                        type='radio'
+                        id='cartao'
+                        name='paymentmethod'
+                        onChange={() =>
+                        setCart({ ...cart, paymentMethod: 'creditcard' })
+                        }
+                        />
+                        <label htmlFor='cartao'>Cartão de crédito</label>
+                    </OpcoesPagamento>
+
+                    <ButtonContainer>
+                        <BotaoConfirmar onClick={() => dataPlaceOrder()} variant={"contained"} color={"primary"}>
+                            <p>Confirmar</p>
+                        </BotaoConfirmar>
+                    </ButtonContainer>
+                </form>
+
+                </InfosPagamento>
                 </ContainerPagamento>
-                <ButtonContainer>
-                    <BotaoConfirmar onClick={() => dataPlaceOrder()} variant={"contained"} color={"primary"}>
-                        <p>Confirmar</p>
-                    </BotaoConfirmar>
-                </ButtonContainer>
+            
             </MainContainer>
                 <Footer />
         </div>
@@ -172,3 +209,4 @@ const CartPage = () => {
 }
 
 export default CartPage;
+

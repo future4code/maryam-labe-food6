@@ -236,23 +236,23 @@ export const Total = styled.div`
 
 // Container Forma de Pagamento 
 
-export const ContainerPagamento = styled.div`
-    display: flex;
-    margin: 1rem 1rem ;
-    width: 20.5rem;
-    border-bottom: 1px solid black;
+// export const ContainerPagamento = styled.div`
+//     display: flex;
+//     margin: 1rem 1rem ;
+//     width: 20.5rem;
+//     border-bottom: 1px solid black;
 
-    p{
-        width: 20.5rem;
-        height: 1.125rem;
-        margin: 0.5rem 1rem 1rem 1rem;
-        font-family: Roboto;
-        font-weight: bold;
-        letter-spacing: -0.39px;
-        color: black;
-    }
+//     p{
+//         width: 20.5rem;
+//         height: 1.125rem;
+//         margin: 0.5rem 1rem 1rem 1rem;
+//         font-family: Roboto;
+//         font-weight: bold;
+//         letter-spacing: -0.39px;
+//         color: black;
+//     }
 
-`
+// `
 
 export const ButtonContainer = styled.div `
     display: flex;
@@ -279,4 +279,24 @@ export const BotaoConfirmar = styled(Button)`
 
 export const MainContainer = styled.div `
     margin-bottom: 100px;
+`
+
+export const ContainerPagamento = styled.div`
+    flex-direction: column;
+    width: 328px;
+    margin: 0 auto 1rem;
+    display: flex;
+`
+
+export const Linha = styled.hr`
+    border-color: transparent;
+    border-bottom-color: black;
+`
+
+export const InfosPagamento = styled.div`
+    margin: 0 1rem;
+`
+
+export const OpcoesPagamento = styled.div`
+    margin-bottom: 0.5rem;
 `

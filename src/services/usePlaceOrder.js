@@ -20,7 +20,7 @@ const usePlaceOrder = () => {
             alert("Pedido realizado com sucesso!")
         })
         .catch((err) => {
-            console.log(err)
+            console.log(err.response)
         })
     }
 
