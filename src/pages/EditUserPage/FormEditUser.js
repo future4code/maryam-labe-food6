@@ -1,9 +1,8 @@
 import { Button, CircularProgress, TextField } from "@material-ui/core";
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { URL_Base } from "../../constants/urls";
-import { GlobalContext } from "../../contexts/GlobalContext";
 import useForm from "../../hooks/useForm";
 import { updateProfile } from "../../services/user";
 import { ContainerEditUser } from "./styled";

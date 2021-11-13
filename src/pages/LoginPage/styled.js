@@ -6,7 +6,7 @@ export const ScreenContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 10vh;
+  margin-top: 15vh;
   width: 100vw;
   
   p, img{

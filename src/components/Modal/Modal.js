@@ -1,5 +1,6 @@
 import { Button, FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 import React, { useContext } from "react";
+import { toast, ToastContainer } from "react-toastify";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import { ModalBody, ModalContainer  } from "./styled";
 
@@ -39,7 +40,7 @@ const ShowModal = ({
                 setQuantity('')
             }
         } else {
-            alert("Antes de prosseguir remova os itens do outro restaurante do carrinho")
+            toast.error("Antes de prosseguir remova os itens do outro restaurante do carrinho")
         }
     }
 
@@ -74,6 +75,7 @@ const ShowModal = ({
             <ModalContainer open={open} onClose={handleClose}>
                 {body}
             </ModalContainer>
+            <ToastContainer />
         </div>
     )
 }

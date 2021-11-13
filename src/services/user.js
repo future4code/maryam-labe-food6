@@ -1,9 +1,8 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 import { URL_Base } from "../constants/urls";
 import { goToAddAddress, goToProfile } from "../routes/coordinator";
 import { goToFeed } from "../routes/coordinator"
-
-
 
 export const signUp = (body, clear, history, setIsLoading) => {
     setIsLoading(true)
@@ -17,7 +16,7 @@ export const signUp = (body, clear, history, setIsLoading) => {
       })
       .catch((err) => {
         setIsLoading(false)
-        alert(err.response.data.message);
+        toast.error(`${err.response.data.message}`);
       });
   };
 
@@ -32,7 +31,7 @@ export const login = (body, history, setIsLoading) => {
     })
     .catch((err) => {
       setIsLoading(false)
-        alert(err.response.data.message)
+      toast.error(`${err.response.data.message}`);
     });
 };
 
@@ -51,7 +50,7 @@ export const address = (body, clear, history, setIsLoading, token) => {
     goToFeed(history)
   }).catch((err) => {
     setIsLoading(false)
-    console.log(err.message)
+    toast.error(err.message)
   })
 }
 
@@ -67,7 +66,7 @@ export const getAddress = (setUserAddress, token) => {
     .then(response => {
       setUserAddress(response.data.address)
     }).catch(error => {
-      console.log(error.response)
+      toast.error(error.response)
     })
 }
 
