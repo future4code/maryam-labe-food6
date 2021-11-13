@@ -1,71 +1,71 @@
 import React, { useState, useEffect, useContext } from "react";
 import useProtectedPage from "../../hooks/useProtectedPage";
-import {
-  Main,
-  SearchBar,
-  InputSearch,
-  Carousel,
-  Categories
-} from "./styled";
+import { Main, SearchBar, InputSearch, Carousel, Categories } from "./styled";
 import { goToRestaurantDetails } from "../../routes/coordinator";
 import { useHistory } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import useGetRestaurants from "../../services/useGetRestaurants";
-import search from '../../assets/imgs/search.png'
-import useForm from '../../hooks/useForm'
+import search from "../../assets/imgs/search.png";
+import useForm from "../../hooks/useForm";
 import { RestaurantCard } from "../../components/RestaurantCard/RestaurantCard";
-
+import { useOrderInProgress } from "../../services/useOrderInProgress";
+import OrderInProgressCard from "../../components/OrderInProgressCard/OrderInProgressCard";
 
 const FeedPage = () => {
   useProtectedPage();
 
   const history = useHistory();
-  const token = localStorage.getItem("token")
-  const [form, handleInputChange, clear] = useForm({ search: '' })
-  const { states } = useContext(GlobalContext)
-  const { restaurants } = states
-  const { getRestaurants } = useGetRestaurants()
-  const [restaurantCategoryFilter, setRestaurantCategoryFilter] = useState('Todos')
+  const token = localStorage.getItem("token");
+  const [form, handleInputChange, clear] = useForm({ search: "" });
+  const { states } = useContext(GlobalContext);
+  const { restaurants } = states;
+  const { getRestaurants } = useGetRestaurants();
+  const [restaurantCategoryFilter, setRestaurantCategoryFilter] =
+    useState("Todos");
+  const { orderInProgress, getOrderInProgress } = useOrderInProgress();
 
   const RestaurantsSearch = restaurants?.filter((restaurant) =>
     restaurant.name.startsWith(form.search)
-  )
+  );
 
   const filteredRestaurants = (category) => {
-    return restaurants?.filter((restaurant) => restaurant.category === category)
-  }
-
+    return restaurants?.filter(
+      (restaurant) => restaurant.category === category
+    );
+  };
 
   const categories = restaurants?.map((restaurant) => {
-    return (restaurant.category)
-  })
+    return restaurant.category;
+  });
   const filteredCategories = categories?.filter((item, index) => {
-    return categories.indexOf(item) === index
-  })
-  filteredCategories.unshift('Todos')
+    return categories.indexOf(item) === index;
+  });
+  filteredCategories.unshift("Todos");
 
-  
   useEffect(() => {
-    getRestaurants(token)
-  })
-
+    getRestaurants(token);
+    getOrderInProgress();
+  });
 
   return (
     <div>
       <Header />
       <Main>
+        {orderInProgress && Object.keys(orderInProgress).length > 0 && (
+          <OrderInProgressCard data={orderInProgress} />
+        )}
         <SearchBar>
-          <img src={search} alt='Pesquisar' />
-          <form autoComplete='off'>
+          <img src={search} alt="Pesquisar" />
+          <form autoComplete="off">
             <InputSearch
-              type='text'
-              placeholder='Restaurante'
+              type="text"
+              placeholder="Restaurante"
               autoFocus
               value={form.search}
               onChange={handleInputChange}
-              name={'search'}
+              name={"search"}
             />
           </form>
         </SearchBar>
@@ -85,7 +85,7 @@ const FeedPage = () => {
               ))}
             </Carousel>
 
-            {restaurantCategoryFilter === 'Todos' &&
+            {restaurantCategoryFilter === "Todos" &&
               RestaurantsSearch?.map((restaurant) => (
                 <RestaurantCard
                   onClick={() => goToRestaurantDetails(history, restaurant.id)}
@@ -101,7 +101,9 @@ const FeedPage = () => {
               filteredRestaurants(restaurantCategoryFilter).map(
                 (restaurant) => (
                   <RestaurantCard
-                    onClick={() => goToRestaurantDetails(history, restaurant.id)}
+                    onClick={() =>
+                      goToRestaurantDetails(history, restaurant.id)
+                    }
                     key={restaurant.id}
                     name={restaurant.name}
                     deliveryTime={restaurant.deliveryTime}
@@ -117,7 +119,7 @@ const FeedPage = () => {
                 <p>Não encontramos </p>
               )}
 
-            {restaurantCategoryFilter !== 'Todos' && form.search.length > 0 && (
+            {restaurantCategoryFilter !== "Todos" && form.search.length > 0 && (
               <p>Faça uma busca na categoria "Todos".</p>
             )}
           </>
