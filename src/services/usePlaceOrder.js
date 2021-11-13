@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import { URL_Base } from "../constants/urls";
 
 const usePlaceOrder = () => {
@@ -16,10 +17,10 @@ const usePlaceOrder = () => {
         .post(`${URL_Base}/restaurants/${actualRestaurantId}/order`, body, headers)
         .then((res) => {
             setData(res.data)
-            alert("Pedido realizado com sucesso!")
+            toast.success("Pedido realizado com sucesso!")
         })
         .catch((err) => {
-            alert(err.response.data.message)
+            toast.error(err.response.data.message)
         })
     }
 

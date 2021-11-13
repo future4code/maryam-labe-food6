@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { GlobalContext } from "../../contexts/GlobalContext";
 import { ModalBody, ModalContainer  } from "./styled";
+import 'react-toastify/dist/ReactToastify.css';
 
 const ShowModal = ({
     open,
@@ -38,6 +39,7 @@ const ShowModal = ({
                 spreadCartProducts.push(product)
                 setCartProducts(spreadCartProducts)
                 setQuantity('')
+                toast.success('Item adicionado ao carrinho')
             }
         } else {
             toast.error("Antes de prosseguir remova os itens do outro restaurante do carrinho")
