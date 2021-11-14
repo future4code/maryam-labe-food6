@@ -7,12 +7,13 @@ Projeto final do curso de Front-End da Labenu. A ideia foi desenvolver um aplica
 
 # 🔗 Link para acessar
 
-- [IFuture](https://ifuture-4food.surge.sh/)
+- [iFuture](https://ifuture-4food.surge.sh/)
 
 
 # 📲 Apresentação do aplicativo
 
-- gifs 
+![iFuture-4Food](https://user-images.githubusercontent.com/84817937/141671486-a0758691-97c4-4833-8a56-d45e32761700.gif)
+
 
 # 🛠 Tecnologias
 
@@ -20,6 +21,8 @@ Projeto final do curso de Front-End da Labenu. A ideia foi desenvolver um aplica
 - [API](https://www.postman.com/home)
 - [Material UI](https://mui.com/pt/getting-started/installation/)
 - [Axios](https://axios-http.com/docs/intro)
+- [React-toastify](https://fkhadra.github.io/react-toastify/introduction)
+- [React-Router-Dom](https://v5.reactrouter.com/web/guides/quick-start)
 - [Metodologias Ágeis](https://trello.com/b/5FldI0TK/kanban-quadro-modelo)
 
 # 📋 Planejamento
@@ -83,12 +86,7 @@ Projeto final do curso de Front-End da Labenu. A ideia foi desenvolver um aplica
 
 # 🚧 Em desenvolvimento
 
-### Carrinho e Finalizar Compra:
-- O usuário deve ser capaz de visualizar a lista de itens que adicionou ao carrinho. Caso não tenha adicionado nenhum item, deverá ver uma mensagem de "Carrinho Vazio".
-- O usuário deve visualizar, no topo da tela, o endereço de entrega.
-- O usuário deve visualizar o preço total da compra, que deve ser corretamente calculado de acordo com o preço e quantidade de cada item adicionado.
-- O usuário deve ser capaz de selecionar uma forma de pagamento dentre as opções de cartão e dinheiro.
-- O usuário deve ser capaz de concluir um pedido e, ao fazê-lo, deve ver um banner de "Pedido em Andamento" com os dados do pedido (esse banner fica ativo durante X minutos, sendo X o tempo de entrega do restaurante).
+### Versão para desktop. (Aplicação foi desenvolvida para Mobile first)
 
 # 💾️ Como baixar/testar o projeto
 
@@ -119,6 +117,7 @@ $ npm install axios
 $ npm install styled-components
 $ npm install react-router-dom
 $ npm install @material-ui/core @material-ui/icons
+$ npm install --save react-toastify
 
 #Agora só rodar o projeto com o comando
 $ npm run start
