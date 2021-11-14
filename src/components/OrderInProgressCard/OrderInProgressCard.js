@@ -13,7 +13,7 @@ const OrderInProgressCard = ({ data }) => (
           <p>{data.restaurantName}</p>
           <p>
             <strong>
-              SUBTOTAL R${data.totalPrice.toFixed(2).replace('.', ',')}
+              SUBTOTAL R$ {data.totalPrice.toFixed(2).replace('.', ',')}
             </strong>
           </p>
         </div>

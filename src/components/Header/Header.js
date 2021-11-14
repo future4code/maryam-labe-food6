@@ -19,7 +19,7 @@ export default function Header() {
                                         <p></p>
                                 </Route>
                                 <Route exact path={'/'}>
-                                        <p>Ifuture</p>
+                                        <p>iFuture</p>
                                 </Route>
                                 <Route exact path={'/restaurantes/:id'}>
                                         <p>Restaurante</p>

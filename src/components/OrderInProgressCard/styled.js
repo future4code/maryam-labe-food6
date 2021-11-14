@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const OrderCard = styled.div`
   position: fixed;
   bottom: 70px;
-  background-color: #E86E5A;
+  background-color: #E8222E;
   width: 100%;
   display: flex;
   justify-content: center;

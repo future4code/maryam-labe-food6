@@ -26,6 +26,7 @@ export const BodyContainer = styled.div`
     display: flex;
     flex-direction: column;
     margin: 5px 16px;
+    margin-bottom: 95px;
 `
 
 export const RestaurantDetails = styled.div`
