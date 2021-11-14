@@ -12,7 +12,7 @@ Projeto final do curso de Front-End da Labenu. A ideia foi desenvolver um aplica
 
 # 📲 Apresentação do aplicativo
 
-![iFuture-4Food](https://user-images.githubusercontent.com/84817937/141671486-a0758691-97c4-4833-8a56-d45e32761700.gif)
+![iFuture-4Food](https://user-images.githubusercontent.com/84817937/141671486-a0758691-97c4-4833-8a56-d45e32761700.gif){width=200px}
 
 
 # 🛠 Tecnologias
