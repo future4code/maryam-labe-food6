@@ -7,8 +7,7 @@ export const Main = styled.div`
 
 export const SearchBar = styled.div`
     box-sizing: border-box;
-    margin: 0.5rem auto 10px;
-    width: 328px;
+    margin: 0.5rem 10px;
     height: 56px;
     padding: 16px 8px 16px 17px;
     border-radius: 2px;

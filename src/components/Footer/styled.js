@@ -13,8 +13,8 @@ export const FooterIcones = styled.div`
     align-items: center;
     justify-content: space-around;
     border-top: 1px solid #b8b8b8;
-    width: 17.6rem;
-    padding: 0.688rem 2.875rem 0.688rem 2.938rem;
+    width: 100vw;
+    /* padding: 0.688rem 2.875rem 0.688rem 2.938rem; */
     
     img{
         width: 2rem;

@@ -110,7 +110,7 @@ export const OrderHistoryCard = styled.div`
         font-style: normal;
         line-height: normal;
         letter-spacing: -0.39px;
-        color: #e86e5a;
+        color: #E8222E;
         }
         p:nth-child(2){
         width: 296px;
