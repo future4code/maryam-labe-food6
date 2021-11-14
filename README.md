@@ -84,6 +84,13 @@ Projeto final do curso de Front-End da Labenu. A ideia foi desenvolver um aplica
 - Ao editar as informações, caso insira alguma informação incorreta ou deixe de inserir alguma informação obrigatória, o usuário deve receber uma mensagem de erro clara.
 - O usuário deve ser capaz de visualizar o seu histórico de pedidos concluídos (após o tempo de entrega do estabelecimento, o seu pedido aparece nessa lista?).
 
+### Carrinho e Finalizar Compra
+- O usuário deve ser capaz de visualizar a lista de itens que adicionou ao carrinho. Caso não tenha adicionado nenhum item, deverá ver uma mensagem de "Carrinho Vazio".
+- O usuário deve visualizar, no topo da tela, o endereço de entrega
+- O usuário deve visualizar o preço total da compra, que deve ser corretamente calculado de acordo com o preço e quantidade de cada item adicionado.
+- O usuário deve ser capaz de selecionar uma forma de pagamento dentre as opções de cartão e dinheiro.
+- O usuário deve ser capaz de concluir um pedido e, ao fazê-lo, deve ver um banner de "Pedido em Andamento" com os dados do pedido (esse banner fica ativo durante X minutos, sendo X o tempo de entrega do restaurante).
+
 # 🚧 Em desenvolvimento
 
 ### Versão para desktop. (Aplicação foi desenvolvida para Mobile first)
