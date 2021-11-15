@@ -60,5 +60,5 @@ export const Categories = styled.span`
     cursor: pointer;
     margin: 0 2.8rem 0 0;
     color: ${(props) =>
-        props.currentCategory === props.categoryName ? '#e86e5a' : '#000'};
+        props.currentCategory === props.categoryName ? '#E8222E' : '#000'};
 `

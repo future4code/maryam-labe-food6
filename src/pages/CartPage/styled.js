@@ -139,15 +139,15 @@ export const RemoveToCartButton = styled.button`
 `
 
 export const Quantity = styled.button `
-    position: absolute;
+    position: relative;
     background-color: #e8222e;
     border: 1px solid #e8222e;
     color: white;
     height: 2rem;
     width: 2rem;
     border-radius: 0 0.5rem 0 0.5rem;
-    right: 23px;
-    margin-top: -1px;
+    top: -113px;
+    left: 201px;
 `
 
 // Info Frete
@@ -258,6 +258,7 @@ export const ButtonContainer = styled.div `
     display: flex;
     justify-content: center;
     margin-top: 25px;
+    margin-bottom: 16px;
 `
 
 export const BotaoConfirmar = styled(Button)`

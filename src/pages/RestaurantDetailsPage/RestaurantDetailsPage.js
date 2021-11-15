@@ -193,7 +193,7 @@ const RestaurantDetailsPage = () => {
                   {restaurant.deliveryTime - 10} - {restaurant.deliveryTime} min
                 </RestaurantInformation>
                 <RestaurantInformation>
-                  Frete R${" "}
+                  Frete R$ {" "}
                   {restaurant &&
                     restaurant.shipping &&
                     restaurant.shipping.toFixed(2)}
