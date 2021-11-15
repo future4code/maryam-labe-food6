@@ -139,7 +139,7 @@ export const RemoveToCartButton = styled.button`
     border-top-left-radius: 8px;
     border-bottom-right-radius: 8px;
     position: relative;
-    top: -31px;
+    top: -30px;
     left: 239px;
     color: white;
     background-color: #e8222e;
@@ -163,7 +163,7 @@ export const DivisorLine = styled.hr`
 `
 
 export const Quantity = styled.button `
-    position: absolute;
+    position: relative;
     background-color: whitesmoke;
     border: 1px solid #e8222e;
     background-color: #e8222e;
@@ -171,5 +171,6 @@ export const Quantity = styled.button `
     height: 2rem;
     width: 2rem;
     border-radius: 0 0.5rem 0 0.5rem;
-    right: 29px;
+    top: -113px;
+    left: 201px;
 `
